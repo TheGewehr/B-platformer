@@ -4,10 +4,7 @@
   <image source="Tileset.png" width="320" height="192"/>
   <wangsets>
    <wangset name="Terrains" type="corner" tile="-1">
-    <wangcolor name="Grass" color="#ff0000" tile="0" probability="1"/>
-    <wangcolor name="Clay" color="#00ff00" tile="11" probability="1"/>
-    <wangcolor name="Water" color="#0000ff" tile="14" probability="1"/>
-    <wangcolor name="Plants" color="#ff7700" tile="6" probability="1"/>
+    
     <wangtile tileid="0" wangid="0,4,0,1,0,4,0,4"/>
     <wangtile tileid="1" wangid="0,4,0,1,0,1,0,4"/>
     <wangtile tileid="2" wangid="0,4,0,4,0,1,0,4"/>
