@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.5" tiledversion="1.7.2" orientation="orthogonal" renderorder="right-down" width="50" height="15" tilewidth="32" tileheight="32" infinite="0" nextlayerid="2" nextobjectid="1">
-<tileset firstgid="1" name="Grass" tilewidth="32" tileheight="32" spacing="0" margin="1" tilecount="60" columns="10">
+<tileset firstgid="1" name="Grass" tilewidth="32" tileheight="32" spacing="1" margin="1" tilecount="60" columns="10">
   <image source="Tileset.png" width="320" height="192"/>
   <wangsets>
    <wangset name="Terrains" type="corner" tile="-1">
-    
     <wangtile tileid="0" wangid="0,4,0,1,0,4,0,4"/>
     <wangtile tileid="1" wangid="0,4,0,1,0,1,0,4"/>
     <wangtile tileid="2" wangid="0,4,0,4,0,1,0,4"/>
