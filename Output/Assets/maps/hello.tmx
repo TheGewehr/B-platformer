@@ -4,7 +4,6 @@
   <image source="Tileset.png" width="320" height="192"/>
   <wangsets>
    <wangset name="Terrains" type="corner" tile="-1">
-
    </wangset>
   </wangsets>
  </tileset>
