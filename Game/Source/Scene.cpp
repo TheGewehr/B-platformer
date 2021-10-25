@@ -34,6 +34,7 @@ bool Scene::Start()
 	// L03: DONE: Load map
 	app->map->Load("hello.tmx");
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
+	img = app->tex->Load("Assets/background/Background.png");
 
 	return true;
 }
@@ -47,6 +48,8 @@ bool Scene::PreUpdate()
 // Called each loop iteration
 bool Scene::Update(float dt)
 {
+	app->render->DrawTexture(img, 0, 0, NULL);
+
     // L02: DONE 3: Request Load / Save when pressing L/S
 	if(app->input->GetKey(SDL_SCANCODE_L) == KEY_DOWN)
 		app->LoadGameRequest();

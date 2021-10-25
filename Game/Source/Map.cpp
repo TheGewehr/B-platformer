@@ -53,13 +53,11 @@ void Map::Draw()
 	{
 		for (int y = 0; y < mapData.maplayers.start->data->height; y++)
 		{
-			
 			int gid = mapData.maplayers.start->data->Get(x, y);
 			SDL_Rect rect = mapData.tilesets.start->data->GetTileRect(gid);
 			iPoint screenPos = MapToWorld(x, y);
 
 			app->render->DrawTexture(mapData.tilesets.start->data->texture, screenPos.x, screenPos.y, &rect);
-
 		}
 	}
 

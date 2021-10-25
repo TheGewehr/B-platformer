@@ -121,7 +121,6 @@ public:
 	MapData mapData;
 
 private:
-
     SString folder;
     bool mapLoaded;
 };
