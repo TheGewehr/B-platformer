@@ -1,6 +1,6 @@
 #include "App.h"
 
-#include "Box2D/Box2D/Box2D.h"
+#include "Box2D/Box2D.h"
 
 #define GRAVITY_X 0.0f
 #define GRAVITY_Y -7.0f
