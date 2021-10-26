@@ -6,10 +6,11 @@
 #include "Audio.h"
 #include "Scene.h"
 #include "Map.h"
-//#include "Player.h"
-//#include "Collisions.h"
+#include "Player.h"
 #include "Defs.h"
 #include "Log.h"
+
+//#include "Collisions.h"
 
 #include <iostream>
 #include <sstream>
@@ -26,7 +27,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	audio = new Audio();
 	scene = new Scene();
 	map = new Map();
-	//player = new Player();
+	player = new Player();
 	//collisions = new Collisions();
 
 	// Ordered for awake / Start / Update
@@ -37,7 +38,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(audio);
 	AddModule(scene);
 	AddModule(map);
-	//AddModule(player);
+	AddModule(player);
 	//AddModule(collisions);
 
 	// Render last to swap buffer
