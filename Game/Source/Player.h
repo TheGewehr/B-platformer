@@ -65,8 +65,14 @@ public:
 	// IDLE animations
 	Animation rightIdleAnim;
 
-	// Move Animations
-	Animation rigthAnim;
+	// Walking Animations
+	Animation walkingRigthAnim;
+
+	// Running Animations
+	Animation runningRigthAnim
+
+	// Running Animations
+	Animation runningRigthAnim;
 
 	// Damage Animatios
 	Animation hitFromRightAnim;
@@ -109,6 +115,10 @@ public:
 	// Exit
 	int exit_counter;
 	SDL_Texture* exitTexture;
+
+	//return to enter credit scene
+	int backTimerReference;
+	int backTimer;
 };
 
 #endif //!__PLAYER_H__
