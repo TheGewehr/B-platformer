@@ -32,11 +32,18 @@ bool Scene::Awake()
 // Called before the first frame
 bool Scene::Start()
 {
-	// L03: DONE: Load map
+	// Defining chains
+
+	int mapCoords
+
+	// 
 	app->map->Load("hello.tmx");
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	img = app->tex->Load("Assets/background/Background.png");
 
+
+	mapColisions = app->physics->CreateChain(180, 922, flipers01, 16);
+	mapColisions->body->SetType(b2_staticBody);
 
 
 	return true;
@@ -106,3 +113,5 @@ bool Scene::CleanUp()
 
 	return true;
 }
+
+

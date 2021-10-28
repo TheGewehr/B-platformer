@@ -42,6 +42,9 @@ private:
 	List<PhysBody*> boxes;
 	List<PhysBody*> ricks;
 
+	PhysBody* mapColisions;
+	PhysBody* limits;
+
 	PhysBody* sensor_loss;
 	PhysBody* sensor_win;
 	PhysBody* ricochet01;
