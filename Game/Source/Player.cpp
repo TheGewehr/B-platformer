@@ -5,17 +5,19 @@
 #include "Render.h"
 #include "Audio.h"
 #include "Scene.h"
+#include "Globals.h"
+#include "Collider.h"
+
 #include "SDL/include/SDL_scancode.h"
 #include <stdio.h>
 #include <string>
 #include <math.h>
 
 //#include "Particles.h"
-//#include "Collisions.h"
 //#include "Enemies.h"
 //#include "Fonts.h"
 
-Player::Player(bool startEnabled) : Module()
+Player::Player(bool startEnabled) : Module(startEnabled)
 {
 	float idleSpeed = 0.01f;
 	float animSpeed = 0.15f;
@@ -97,20 +99,22 @@ bool Player::Start()
 	bool ret = true;
 
 	// Add textures
+	texture = app->tex->Load("Assets/sprites/GraveRobber.png");
 
 	xposition = 550;
 	yposition = 1400;
 
-	lastDirection = 5;
+	lastDirection = 2;
 	return ret;
 }
 
-bool Player::Update()
+update_status Player::Update()
 {
+	update_status ret = update_status::UPDATE_CONTINUE;
 
 }
 
-bool Player::PostUpdate()
+update_status Player::PostUpdate()
 {
 
 }
