@@ -18,7 +18,7 @@ class Audio;
 class Scene;
 class Map;
 class ModulePhysics;
-//class Player;
+class Player;
 //class Collisions;
 
 class App
@@ -92,7 +92,7 @@ public:
 	Scene* scene;
 	Map* map;
 	ModulePhysics* physics;
-	//Player* player;
+	Player* player;
 	//Collisions* collisions;
 
 private:

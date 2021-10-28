@@ -20,7 +20,7 @@ class Player : public Module
 {
 public:
 	// Constructor
-	Player(bool startEnabled);
+	Player();
 
 	// Destructor
 	~Player();
@@ -64,7 +64,7 @@ public:
 
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
-	Animation* curentAnimation = nullptr;
+	Animation* currentAnimation = nullptr;
 
 	// Set of animations
 	// IDLE animations

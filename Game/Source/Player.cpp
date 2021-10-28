@@ -17,7 +17,7 @@
 //#include "Enemies.h"
 //#include "Fonts.h"
 
-Player::Player(bool startEnabled) : Module(startEnabled)
+Player::Player() : Module()
 {
 	float idleSpeed = 0.01f;
 	float animSpeed = 0.15f;
@@ -112,6 +112,240 @@ update_status Player::Update()
 {
 	update_status ret = update_status::UPDATE_CONTINUE;
 
+	// Movement Keys
+	keyUp = app->input->GetKey(SDL_SCANCODE_W);
+	keyLeft = app->input->GetKey(SDL_SCANCODE_A);
+	keyDown = app->input->GetKey(SDL_SCANCODE_S);
+	keyRight = app->input->GetKey(SDL_SCANCODE_D);
+	keyJump = app->input->GetKey(SDL_SCANCODE_SPACE);
+
+
+	if (!destroyed) {
+
+		if ((keyUp == KeyState::KEY_IDLE)
+			&& (keyLeft == KeyState::KEY_REPEAT)
+			&& (keyDown == KeyState::KEY_IDLE)
+			&& (keyRight == KeyState::KEY_IDLE))
+		{
+			lastDirection = 3;
+
+			if (!colCheck[2])
+			{
+				xposition -= speed;
+				SetAnimation(walkingRigthAnim);
+				colCheck[2] = false;
+			}
+			else {
+				SetAnimation(rightIdleAnim);
+			}
+		}
+
+		//right
+		if ((keyUp == KeyState::KEY_IDLE)
+			&& (keyLeft == KeyState::KEY_IDLE)
+			&& (keyDown == KeyState::KEY_IDLE)
+			&& (keyRight == KeyState::KEY_REPEAT))
+		{
+			lastDirection = 7;
+
+			if (!colCheck[6])
+			{
+				xposition += speed;
+				SetAnimation(walkingRigthAnim);
+				colCheck[5] = false;
+			}
+			else {
+				SetAnimation(rightIdleAnim);
+			}
+		}
+
+		//Up
+		/*
+		if ((keyUp == KeyState::KEY_REPEAT)
+			&& (keyLeft == KeyState::KEY_IDLE)
+			&& (keyDown == KeyState::KEY_IDLE)
+			&& (keyRight == KeyState::KEY_IDLE))
+		{
+			lastDirection = 1;
+
+			if (!colCheck[0])
+			{
+				SetAnimation(upAnim);
+				position.y -= speed;
+				colCheck[0] = false;
+			}
+			else {
+				SetAnimation(upIdleAnim);
+			}
+		}
+		*/
+
+		//Down
+		/*
+		if ((keyUp == KeyState::KEY_IDLE)
+			&& (keyLeft == KeyState::KEY_IDLE)
+			&& (keyDown == KeyState::KEY_REPEAT)
+			&& (keyRight == KeyState::KEY_IDLE))
+		{
+			lastDirection = 5;
+
+			if (!colCheck[4])
+			{
+				SetAnimation(downAnim);
+
+				yposition += speed;
+				colCheck[4] = false;
+			}
+			else {
+				SetAnimation(downIdleAnim);
+			}
+		}
+		*/
+	}
+
+	if (canMoveCamera) {
+
+		switch (level) {
+
+		case 0:
+
+			if (keyRight == KeyState::KEY_REPEAT) {
+
+				if (app->render->camera.y + app->render->camera.h > 500) {
+
+					if (app->render->camera.x / SCREEN_SIZE + app->render->camera.w + speed < 1083)
+					{
+						if (lastDirection % 2 != 0)
+						{
+							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
+								app->render->camera.x += speed * SCREEN_SIZE;
+							}
+						}
+						else
+						{
+							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+								app->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+							}
+						}
+					}
+				}
+				else
+				{
+
+					if (app->render->camera.x / SCREEN_SIZE + app->render->camera.w + speed < 1242)
+					{
+
+						if (lastDirection % 2 != 0)
+						{
+							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
+								app->render->camera.x += speed * SCREEN_SIZE;
+							}
+						}
+						else
+						{
+							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
+								app->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+							}
+						}
+					}
+				}
+			}
+
+
+			if (keyLeft == KeyState::KEY_REPEAT) {
+
+				if (app->render->camera.x / SCREEN_SIZE - speed > 474)
+				{
+					if (lastDirection % 2 != 0)
+					{
+						if (xposition < app->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							app->render->camera.x -= speed * SCREEN_SIZE;
+						}
+					}
+					else
+					{
+						if (xposition < app->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							app->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
+						}
+					}
+				}
+			}
+
+
+			if (app->render->camera.y / SCREEN_SIZE <= 1156) {
+
+				if (lastDirection % 2 == 0)
+				{
+					if (yposition <= (app->render->camera.y / SCREEN_SIZE + verticalMargin) && app->render->camera.y / SCREEN_SIZE - diagonalSpeed >= 0) app->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
+				}
+				else
+				{
+					if (yposition < (app->render->camera.y / SCREEN_SIZE + verticalMargin) && app->render->camera.y / SCREEN_SIZE - speed >= 0) app->render->camera.y -= speed * SCREEN_SIZE;
+				}
+			}
+
+			break;
+
+		case 1:
+
+			if (keyRight == KeyState::KEY_REPEAT) {
+
+				if (app->render->camera.x / SCREEN_SIZE + app->render->camera.w + speed < 768)
+				{
+					if (lastDirection % 2 != 0)
+					{
+						if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
+							app->render->camera.x += speed * SCREEN_SIZE;
+						}
+					}
+					else
+					{
+						if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
+							app->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+						}
+					}
+				}
+			}
+
+
+			if (keyLeft == KeyState::KEY_REPEAT) {
+
+				if (app->render->camera.x / SCREEN_SIZE - speed > 0)
+				{
+					if (lastDirection % 2 != 0)
+					{
+						if (xposition < app->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							app->render->camera.x -= speed * SCREEN_SIZE;
+						}
+					}
+					else
+					{
+						if (xposition < app->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							app->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
+						}
+					}
+
+				}
+
+			}
+
+
+			if (app->render->camera.y / SCREEN_SIZE <= 3072) {
+
+				if (lastDirection % 2 == 0)
+				{
+					if (yposition <= (app->render->camera.y / SCREEN_SIZE + verticalMargin)
+						&& app->render->camera.y / SCREEN_SIZE - diagonalSpeed >= 0) app->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
+				}
+				else
+				{
+					if (yposition < (app->render->camera.y / SCREEN_SIZE + verticalMargin)
+						&& app->render->camera.y / SCREEN_SIZE - speed >= 0) spp->render->camera.y -= speed * SCREEN_SIZE;
+				}
+			}
+			break;
+		}
+	}
 }
 
 update_status Player::PostUpdate()
@@ -127,5 +361,9 @@ void Player::OnCollision(Collider* c1, Collider* c2)
 
 void Player::SetAnimation(Animation& toChange)
 {
+	if (currentAnimation != &toChange) {
 
+		toChange.Reset();
+		currentAnimation = &toChange;
+	}
 }
