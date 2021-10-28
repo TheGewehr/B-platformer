@@ -102,12 +102,104 @@ bool Player::Start()
 	yposition = 1400;
 
 	lastDirection = 5;
+
 	return ret;
 }
 
 bool Player::Update() 
 {
+	// Player movement keys
+	keyUp = app->input->GetKey(SDL_SCANCODE_W);
+	keyLeft = app->input->GetKey(SDL_SCANCODE_A);
+	keyDown = app->input->GetKey(SDL_SCANCODE_S);
+	keyRight = app->input->GetKey(SDL_SCANCODE_D];
+	keyJump = app->input->GetKey(SDL_SCANCODE_SPACE);
 
+	// Player movement in all directions
+	// Right
+	if (!destroyed) {
+
+		if ((keyUp == KeyState::KEY_IDLE)
+			&& (keyLeft == KeyState::KEY_REPEAT)
+			&& (keyDown == KeyState::KEY_IDLE)
+			&& (keyRight == KeyState::KEY_IDLE))
+		{
+			lastDirection = 3;
+
+			if (!colCheck[2])
+			{
+				xposition -= speed;
+				SetAnimation(leftAnim);
+				colCheck[2] = false;
+			}
+			else {
+				SetAnimation(leftIdleAnim);
+			}
+		}
+
+		//right
+		if ((keyUp == KeyState::KEY_IDLE)
+			&& (keyLeft == KeyState::KEY_IDLE)
+			&& (keyDown == KeyState::KEY_IDLE)
+			&& (keyRight == KeyState::KEY_REPEAT))
+		{
+			lastDirection = 7;
+
+
+
+
+			if (!colCheck[6])
+			{
+				xposition += speed;
+				SetAnimation(rightAnim);
+				colCheck[5] = false;
+			}
+			else {
+				SetAnimation(rightIdleAnim);
+			}
+		}
+
+		//Up
+		if ((keyUp == KEY_STATE::KEY_REPEAT)
+			&& (keyLeft == KEY_STATE::KEY_IDLE)
+			&& (keyDown == KEY_STATE::KEY_IDLE)
+			&& (keyRight == KEY_STATE::KEY_IDLE))
+		{
+			lastDirection = 1;
+
+			if (!colCheck[0])
+			{
+				SetAnimation(upAnim);
+				position.y -= speed;
+				colCheck[0] = false;
+			}
+			else {
+				SetAnimation(upIdleAnim);
+			}
+
+		}
+
+		//Down
+		if ((keyUp == KEY_STATE::KEY_IDLE)
+			&& (keyLeft == KEY_STATE::KEY_IDLE)
+			&& (keyDown == KEY_STATE::KEY_REPEAT)
+			&& (keyRight == KEY_STATE::KEY_IDLE))
+		{
+			lastDirection = 5;
+
+			if (!colCheck[4])
+			{
+				SetAnimation(downAnim);
+
+				position.y += speed;
+				colCheck[4] = false;
+			}
+			else {
+				SetAnimation(downIdleAnim);
+			}
+
+
+		}
 }
 
 bool Player::PostUpdate()
