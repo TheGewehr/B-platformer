@@ -17,6 +17,7 @@ class Textures;
 class Audio;
 class Scene;
 class Map;
+class ModulePhysics;
 //class Player;
 //class Collisions;
 
@@ -90,6 +91,7 @@ public:
 	Audio* audio;
 	Scene* scene;
 	Map* map;
+	ModulePhysics* physics;
 	//Player* player;
 	//Collisions* collisions;
 
