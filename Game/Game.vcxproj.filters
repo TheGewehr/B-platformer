@@ -40,6 +40,9 @@
     <ClCompile Include="Source\Physics.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Heather Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Defs.h">
