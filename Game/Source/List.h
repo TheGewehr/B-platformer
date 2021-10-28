@@ -56,6 +56,19 @@ public:
 		return size;
 	}
 
+
+	//
+
+	List_item<tdata>* getFirst() const
+	{
+		return start;
+	}
+
+	List_item<tdata>* getLast() const
+	{
+		return end;
+	}
+
 	// Add new item
 	ListItem<tdata>* add(const tdata& item)
 	{
