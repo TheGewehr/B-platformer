@@ -8,6 +8,9 @@
 #include "Input.h"
 //#include "p2Point.h"
 
+#define LOG(format, ...) log(__FILE__, __LINE__, format, __VA_ARGS__);
+void log(const char file[], int line, const char* format, ...);
+
 #define PLAYER_LIFES_LEFT 3
 
 struct SDL_Texture;
@@ -35,11 +38,13 @@ public:
 
 public:
 	// Position of the player in the map
-	fPoint position;
+	int xposition;
+	int yposition;
 
-	fPoint GetPlayerPosition() const 
+	int GetPlayerPosition() const 
 	{
-		return position;
+		return xposition;
+		return yposition;;
 	}
 
 	// Camera
@@ -69,10 +74,10 @@ public:
 	Animation walkingRigthAnim;
 
 	// Running Animations
-	Animation runningRigthAnim
-
-	// Running Animations
 	Animation runningRigthAnim;
+
+	// Jumping Animations
+	Animation jumpingRigthAnim;
 
 	// Damage Animatios
 	Animation hitFromRightAnim;

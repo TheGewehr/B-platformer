@@ -57,28 +57,52 @@ Player::Player(bool startEnabled) : Module()
 	runningRigthAnim.loop = true;
 	runningRigthAnim.speed = idleSpeed;
 
-	// Jump animation right
-	rightIdleAnim.PushBack({ 147, 8, 21, 41 });
-	rightIdleAnim.PushBack({ 178, 8, 22, 42 });
-	rightIdleAnim.loop = true;
-	rightIdleAnim.speed = idleSpeed;
+	// Jumping animation right
+	jumpingRigthAnim.PushBack({ 9, 209, 16, 31 });
+	jumpingRigthAnim.PushBack({ 54, 208, 18, 32 });
+	jumpingRigthAnim.PushBack({ 100, 206, 20, 34 });
+	jumpingRigthAnim.PushBack({ 148, 201, 19, 34 });
+	jumpingRigthAnim.PushBack({ 195, 198, 19, 39 });
+	jumpingRigthAnim.PushBack({ 243, 200, 20, 34 });
+	jumpingRigthAnim.loop = true;
+	jumpingRigthAnim.speed = idleSpeed;
 
-	// IDLE animation right
-	rightIdleAnim.PushBack({ 147, 8, 21, 41 });
-	rightIdleAnim.PushBack({ 178, 8, 22, 42 });
-	rightIdleAnim.loop = true;
-	rightIdleAnim.speed = idleSpeed;
+	// Getting hit right
+	hitFromRightAnim.PushBack({ 6, 255, 19, 33 });
+	hitFromRightAnim.PushBack({ 55, 255, 19, 33 });
+	hitFromRightAnim.PushBack({ 103, 255, 18, 33 });
+	hitFromRightAnim.loop = false;
+	hitFromRightAnim.speed = hitSpeed;
 
-	// IDLE animation right
-	rightIdleAnim.PushBack({ 147, 8, 21, 41 });
-	rightIdleAnim.PushBack({ 178, 8, 22, 42 });
-	rightIdleAnim.loop = true;
-	rightIdleAnim.speed = idleSpeed;
+	// Death animation right
+	deathFromRightAnim.PushBack({ 6, 303, 19, 33 });
+	deathFromRightAnim.PushBack({ 52, 308, 23, 28 });
+	deathFromRightAnim.PushBack({ 99, 312, 32, 24 });
+	deathFromRightAnim.PushBack({ 147, 318, 35, 18 });
+	deathFromRightAnim.PushBack({ 195, 321, 34, 15 });
+	deathFromRightAnim.PushBack({ 243, 324, 35, 12 });
+	deathFromRightAnim.loop = true;
+	deathFromRightAnim.speed = deathSpeed;
 }
 
 Player::~Player() 
 {
 
+}
+
+bool Player::Start()
+{
+	LOG("Loading player textures");
+
+	bool ret = true;
+
+	// Add textures
+
+	xposition = 550;
+	yposition = 1400;
+
+	lastDirection = 5;
+	return ret;
 }
 
 bool Player::Update() 
