@@ -32,7 +32,7 @@ bool Scene::Awake()
 // Called before the first frame
 bool Scene::Start()
 {
-	app->physics->Enable();
+	//app->physics->Enable();
 	// Defining chains
 
 	int mapCoords[72] = {

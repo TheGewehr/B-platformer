@@ -12,7 +12,7 @@
 #pragma comment( lib, "Box2D/libx86/Release/Box2D.lib" )
 #endif
 
-ModulePhysics::ModulePhysics(App* app, bool start_enabled) : Module(app, start_enabled)
+ModulePhysics::ModulePhysics()
 {
 	world = NULL;
 	mouse_joint = NULL;
@@ -36,7 +36,7 @@ bool ModulePhysics::Start()
 }
 
 
-update_status ModulePhysics::PreUpdate()
+bool ModulePhysics::PreUpdate()
 {
 	world->Step(1.0f / 60.0f, 6, 2);
 
@@ -52,7 +52,7 @@ update_status ModulePhysics::PreUpdate()
 	}
 
 
-	return UPDATE_CONTINUE;
+	return true;
 }
 
 PhysBody* ModulePhysics::CreateCircle(int x, int y, int radius)
@@ -229,7 +229,7 @@ b2World* ModulePhysics::GetWorld()
 }
 
 // 
-update_status ModulePhysics::PostUpdate()
+bool ModulePhysics::PostUpdate()
 {
 	if (Application->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
 		debug = !debug;
@@ -310,7 +310,7 @@ update_status ModulePhysics::PostUpdate()
 		}
 	}
 
-	return UPDATE_CONTINUE;
+	return true;
 }
 
 

@@ -36,12 +36,12 @@ public:
 class ModulePhysics : public Module, public b2ContactListener // TODO
 {
 public:
-	ModulePhysics(App* app, bool start_enabled = true);
+	ModulePhysics();
 	~ModulePhysics();
 
 	bool Start();
-	update_status PreUpdate();
-	update_status PostUpdate();
+	bool PreUpdate();
+	bool PostUpdate();
 	bool CleanUp();
 
 	PhysBody* CreateCircle(int x, int y, int radius);

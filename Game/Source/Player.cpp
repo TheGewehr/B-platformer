@@ -107,9 +107,9 @@ bool Player::Start()
 	return ret;
 }
 
-update_status Player::Update()
+bool Player::Update()
 {
-	update_status ret = update_status::UPDATE_CONTINUE;
+	bool ret = true;
 
 	// Movement Keys
 	keyUp = app->input->GetKey(SDL_SCANCODE_W);
@@ -118,7 +118,7 @@ update_status Player::Update()
 	keyRight = app->input->GetKey(SDL_SCANCODE_D);
 	keyJump = app->input->GetKey(SDL_SCANCODE_SPACE);
 
-
+	/*
 	if (!destroyed) {
 
 		if ((keyUp == KeyState::KEY_IDLE)
@@ -199,9 +199,9 @@ update_status Player::Update()
 				SetAnimation(downIdleAnim);
 			}
 		}
-		*/
+		
 	}
-
+	*/
 	if (canMoveCamera) {
 
 		switch (level) {
@@ -339,17 +339,18 @@ update_status Player::Update()
 				else
 				{
 					if (yposition < (app->render->camera.y / SCREEN_SIZE + verticalMargin)
-						&& app->render->camera.y / SCREEN_SIZE - speed >= 0) spp->render->camera.y -= speed * SCREEN_SIZE;
+						&& app->render->camera.y / SCREEN_SIZE - speed >= 0) app->render->camera.y -= speed * SCREEN_SIZE;
 				}
 			}
 			break;
 		}
 	}
+	return ret;
 }
 
-update_status Player::PostUpdate()
+bool Player::PostUpdate()
 {
-
+	return true;
 }
 
 void Player::OnCollision(Collider* c1, Collider* c2)

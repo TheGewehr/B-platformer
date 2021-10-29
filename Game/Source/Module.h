@@ -17,7 +17,7 @@ private:
 public:
 	App* Application;
 
-	Module(App* parent, bool start_enabled = true) : Application(parent), enabled(start_enabled)
+	Module()
 	{}
 
 	bool IsEnabled() const

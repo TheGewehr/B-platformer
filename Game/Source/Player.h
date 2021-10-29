@@ -27,10 +27,10 @@ public:
 	bool Start();
 
 	// Performs new input and handles player movement
-	update_status Update();
+	bool Update();
 
 	//Performs the render call of the player sprite
-	update_status PostUpdate();
+	bool PostUpdate();
 
 	void OnCollision(Collider* c1, Collider* c2);
 
