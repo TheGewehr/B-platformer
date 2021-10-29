@@ -59,12 +59,12 @@ public:
 
 	//
 
-	List_item<tdata>* getFirst() const
+	ListItem<tdata>* getFirst() const
 	{
 		return start;
 	}
 
-	List_item<tdata>* getLast() const
+	ListItem<tdata>* getLast() const
 	{
 		return end;
 	}

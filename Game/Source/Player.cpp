@@ -6,7 +6,6 @@
 #include "Audio.h"
 #include "Scene.h"
 #include "Globals.h"
-#include "Collider.h"
 
 #include "SDL/include/SDL_scancode.h"
 #include <stdio.h>
@@ -223,7 +222,7 @@ update_status Player::Update()
 						}
 						else
 						{
-							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
 								app->render->camera.x += diagonalSpeed * SCREEN_SIZE;
 							}
 						}

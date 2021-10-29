@@ -13,9 +13,6 @@
     <ClCompile Include="Source\Audio.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Collider.cpp">
-      <Filter>CPP Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Input.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
@@ -76,9 +73,6 @@
       <Filter>Heather Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Audio.h">
-      <Filter>Heather Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Collider.h">
       <Filter>Heather Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Globals.h">
