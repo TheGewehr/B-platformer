@@ -93,7 +93,7 @@ Player::~Player()
 
 bool Player::Start()
 {
-	LOG("Loading player textures");
+	//LOG("Loading player textures");
 
 	bool ret = true;
 
