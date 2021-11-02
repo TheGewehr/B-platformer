@@ -19,7 +19,7 @@ class Scene;
 class Map;
 class ModulePhysics;
 class Player;
-//class Collisions;
+class ModuleCollisions;
 
 class App
 {
@@ -93,8 +93,8 @@ public:
 	Map* map;
 	ModulePhysics* physics;
 	Player* player;
-	//Collisions* collisions;
-
+	ModuleCollisions* collisions;
+	
 private:
 
 	int argc;

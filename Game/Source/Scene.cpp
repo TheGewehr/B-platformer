@@ -5,8 +5,9 @@
 #include "Render.h"
 #include "Window.h"
 #include "Scene.h"
+#include "Player.h"
 #include "Map.h"
-
+#include "ModuleCollisions.h"
 
 #include "Defs.h"
 #include "Log.h"
@@ -111,6 +112,68 @@ bool Scene::CleanUp()
 	LOG("Freeing scene");
 
 	return true;
+}
+
+void Scene::OnCollision(Collider* c1, Collider* c2)
+{
+
+
+	//AXIAL
+	if (c1 == app->player->colBoxUp && c2->type == Collider::WALL) {
+		app->player->colCheck[0] = true;
+	}
+	if (c1 == app->player->colBoxLeft && c2->type == Collider::WALL) {
+		app->player->colCheck[2] = true;
+	}
+	if (c1 == app->player->colBoxDown && c2->type == Collider::WALL) {
+		app->player->colCheck[4] = true;
+	}
+	if (c1 == app->player->colBoxRight && c2->type == Collider::WALL) {
+		app->player->colCheck[6] = true;
+	}
+
+	//DIAGONAL
+	if (c1 == app->player->colBoxUpLeft && c2->type == Collider::WALL) {
+		app->player->colCheck[1] = true;
+	}
+	if (c1 == app->player->colBoxDownLeft && c2->type == Collider::WALL) {
+		app->player->colCheck[3] = true;
+	}
+	if (c1 == app->player->colBoxDownRight && c2->type == Collider::WALL) {
+		app->player->colCheck[5] = true;
+	}
+	if (c1 == app->player->colBoxUpRight && c2->type == Collider::WALL) {
+		app->player->colCheck[7] = true;
+	}
+
+	////rock
+	//
+	//if (c2 == app->scene->rockTrigger) {
+	//	app->scene->rockAnimActivate = true;
+	//	app->audio->PlayFx(rockFallFx);
+	//	app->scene->rockTrigger->pendingToDelete = true;
+	//}
+	//
+	//if (c2 == app->scene->bossTrigger) {
+	//	if (App->scene->bossTrigger->pendingToDelete == false) App->enemies->AddEnemy(ENEMY_TYPE::BOSS_1, 1060, -190);
+	//	App->scene->bossTrigger->pendingToDelete = true;
+	//	canMoveCamera = false;
+	//
+	//
+	//}
+
+	if (app->collisions->debug) {
+		if (c2->type == Collider::ENEMY_SHOT ) // && !in_iFrame
+		{
+			app->player->playerLife -= 1;
+			//iFrameTimer = iFrameTimerReference;
+			//in_iFrame = true;
+
+		}
+	}
+
+
+
 }
 
 

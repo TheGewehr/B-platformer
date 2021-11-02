@@ -37,6 +37,12 @@
     <ClCompile Include="Source\Player.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Collider.cpp">
+      <Filter>Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ModuleCollisions.cpp">
+      <Filter>CPP Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Defs.h">
@@ -97,6 +103,12 @@
       <Filter>Heather Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Player.h">
+      <Filter>Heather Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Collider.h">
+      <Filter>Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ModuleCollisions.h">
       <Filter>Heather Files</Filter>
     </ClInclude>
   </ItemGroup>

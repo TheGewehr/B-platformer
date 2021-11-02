@@ -100,8 +100,8 @@ bool Player::Start()
 	// Add textures
 	texture = app->tex->Load("Assets/sprites/GraveRobber.png");
 
-	xposition = 550;
-	yposition = 1400;
+	xposition = 20;
+	yposition = 20;
 
 	lastDirection = 2;
 	return ret;
