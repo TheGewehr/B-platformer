@@ -34,9 +34,6 @@
     <ClCompile Include="Source\Window.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Physics.cpp">
-      <Filter>CPP Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Player.cpp">
       <Filter>CPP Files</Filter>
     </ClCompile>
@@ -85,9 +82,6 @@
       <Filter>Heather Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Module.h">
-      <Filter>Heather Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\Physics.h">
       <Filter>Heather Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Render.h">
