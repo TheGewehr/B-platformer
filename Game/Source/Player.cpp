@@ -202,160 +202,130 @@ bool Player::Update()
 		
 	}
 	*/
-	if (canMoveCamera) {
 
-		switch (level) {
+	// Idle Animations 
+	if ((keyUp == KeyState::KEY_IDLE)
+		&& (keyLeft == KeyState::KEY_IDLE)
+		&& (keyDown == KeyState::KEY_IDLE)
+		&& (keyRight == KeyState::KEY_IDLE)
+		) {
 
-		case 0:
+		switch (lastDirection) {
 
-			if (keyRight == KeyState::KEY_REPEAT) {
+		case 3:
 
-				if (app->render->camera.y + app->render->camera.h > 500) {
-
-					if (app->render->camera.x / SCREEN_SIZE + app->render->camera.w + speed < 1083)
-					{
-						if (lastDirection % 2 != 0)
-						{
-							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
-								app->render->camera.x += speed * SCREEN_SIZE;
-							}
-						}
-						else
-						{
-							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
-								app->render->camera.x += diagonalSpeed * SCREEN_SIZE;
-							}
-						}
-					}
-				}
-				else
-				{
-
-					if (app->render->camera.x / SCREEN_SIZE + app->render->camera.w + speed < 1242)
-					{
-
-						if (lastDirection % 2 != 0)
-						{
-							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
-								app->render->camera.x += speed * SCREEN_SIZE;
-							}
-						}
-						else
-						{
-							if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
-								app->render->camera.x += diagonalSpeed * SCREEN_SIZE;
-							}
-						}
-					}
-				}
-			}
-
-
-			if (keyLeft == KeyState::KEY_REPEAT) {
-
-				if (app->render->camera.x / SCREEN_SIZE - speed > 474)
-				{
-					if (lastDirection % 2 != 0)
-					{
-						if (xposition < app->render->camera.x / SCREEN_SIZE + horizontalMargin) {
-							app->render->camera.x -= speed * SCREEN_SIZE;
-						}
-					}
-					else
-					{
-						if (xposition < app->render->camera.x / SCREEN_SIZE + horizontalMargin) {
-							app->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
-						}
-					}
-				}
-			}
-
-
-			if (app->render->camera.y / SCREEN_SIZE <= 1156) {
-
-				if (lastDirection % 2 == 0)
-				{
-					if (yposition <= (app->render->camera.y / SCREEN_SIZE + verticalMargin) && app->render->camera.y / SCREEN_SIZE - diagonalSpeed >= 0) app->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
-				}
-				else
-				{
-					if (yposition < (app->render->camera.y / SCREEN_SIZE + verticalMargin) && app->render->camera.y / SCREEN_SIZE - speed >= 0) app->render->camera.y -= speed * SCREEN_SIZE;
-				}
-			}
-
+			SetAnimation(rightIdleAnim);
 			break;
 
+		case 7:
+
+			SetAnimation(rightIdleAnim);
+			break;
+
+		}
+	}
+
+	// Death Animations
+	if (destroyed == true)
+	{
+		backTimer--;
+		currentAnimation->Reset();
+		switch (lastDirection)
+		{
 		case 1:
+			if (currentAnimation != &deathFromRightAnim)
+				SetAnimation(deathFromRightAnim);
+			break;
 
-			if (keyRight == KeyState::KEY_REPEAT) {
+		case 2:
+			if (currentAnimation != &deathFromRightAnim)
+				SetAnimation(deathFromRightAnim);
+			break;
 
-				if (app->render->camera.x / SCREEN_SIZE + app->render->camera.w + speed < 768)
-				{
-					if (lastDirection % 2 != 0)
-					{
-						if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
-							app->render->camera.x += speed * SCREEN_SIZE;
-						}
-					}
-					else
-					{
-						if (xposition + playerWidth > app->render->camera.x / SCREEN_SIZE + app->render->camera.w - horizontalMargin) {
-							app->render->camera.x += diagonalSpeed * SCREEN_SIZE;
-						}
-					}
-				}
-			}
+		case 3:
+			if (currentAnimation != &deathFromRightAnim)
+				SetAnimation(deathFromRightAnim);
+			break;
 
-
-			if (keyLeft == KeyState::KEY_REPEAT) {
-
-				if (app->render->camera.x / SCREEN_SIZE - speed > 0)
-				{
-					if (lastDirection % 2 != 0)
-					{
-						if (xposition < app->render->camera.x / SCREEN_SIZE + horizontalMargin) {
-							app->render->camera.x -= speed * SCREEN_SIZE;
-						}
-					}
-					else
-					{
-						if (xposition < app->render->camera.x / SCREEN_SIZE + horizontalMargin) {
-							app->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
-						}
-					}
-
-				}
-
-			}
-
-
-			if (app->render->camera.y / SCREEN_SIZE <= 3072) {
-
-				if (lastDirection % 2 == 0)
-				{
-					if (yposition <= (app->render->camera.y / SCREEN_SIZE + verticalMargin)
-						&& app->render->camera.y / SCREEN_SIZE - diagonalSpeed >= 0) app->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
-				}
-				else
-				{
-					if (yposition < (app->render->camera.y / SCREEN_SIZE + verticalMargin)
-						&& app->render->camera.y / SCREEN_SIZE - speed >= 0) app->render->camera.y -= speed * SCREEN_SIZE;
-				}
-			}
+		case 4:
+			if (currentAnimation != &deathFromRightAnim)
+				SetAnimation(deathFromRightAnim);
 			break;
 		}
 	}
+
+	////////////////////////////////////////////
+	hitBox->SetPos(xposition, yposition + playerHeightOffset);
+
+	colBoxUp->SetPos(xposition, yposition - speed + playerHeightOffset);
+	colBoxUpLeft->SetPos(xposition - diagonalSpeed, yposition - diagonalSpeed + playerHeightOffset);
+	colBoxLeft->SetPos(xposition - speed, yposition + playerHeightOffset);
+	colBoxDownLeft->SetPos(xposition - diagonalSpeed, yposition + playerHeight + playerHeightOffset);
+	colBoxDown->SetPos(xposition, yposition + playerHeight + playerHeightOffset);
+	colBoxDownRight->SetPos(xposition + playerWidth, yposition + playerHeight + playerHeightOffset);
+	colBoxRight->SetPos(xposition + playerWidth, yposition + playerHeightOffset);
+	colBoxUpRight->SetPos(xposition + playerWidth, yposition - diagonalSpeed + playerHeightOffset);
+
+	currentAnimation->Update();
 	return ret;
 }
 
 bool Player::PostUpdate()
 {
+	if (backTimer > 0)
+	{
+		SDL_Rect rect = currentAnimation->GetCurrentFrame();
+
+		if (in_iFrame)
+		{
+			iFrameTimer--;
+
+			if (((iFrameTimer % 10) >= 0) && ((iFrameTimer % 10) <= 5))
+			{
+				Blit(texture, xposition + playerWidthOffset, yposition, &rect, 1);
+
+			}
+
+			if (iFrameTimer <= 0) in_iFrame = !in_iFrame;
+		}
+		else
+		{
+			app->render->DrawTexture(texture, xposition + playerWidthOffset, yposition, &rect, 1);
+		}
+	}
+	
 	return true;
 }
 
 void Player::OnCollision(Collider* c1, Collider* c2)
 {
+	//AXIAL
+	if (c1 == colBoxUp && c2->type == Collider::WALL) {
+		colCheck[0] = true;
+	}
+	if (c1 == colBoxLeft && c2->type == Collider::WALL) {
+		colCheck[2] = true;
+	}
+	if (c1 == colBoxDown && c2->type == Collider::WALL) {
+		colCheck[4] = true;
+	}
+	if (c1 == colBoxRight && c2->type == Collider::WALL) {
+		colCheck[6] = true;
+	}
 
+	//DIAGONAL
+	if (c1 == colBoxUpLeft && c2->type == Collider::WALL) {
+		colCheck[1] = true;
+	}
+	if (c1 == colBoxDownLeft && c2->type == Collider::WALL) {
+		colCheck[3] = true;
+	}
+	if (c1 == colBoxDownRight && c2->type == Collider::WALL) {
+		colCheck[5] = true;
+	}
+	if (c1 == colBoxUpRight && c2->type == Collider::WALL) {
+		colCheck[7] = true;
+	}
 }
 
 

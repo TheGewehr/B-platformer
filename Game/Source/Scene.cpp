@@ -105,6 +105,16 @@ bool Scene::Start()
 	playerWall[51] = app->collisions->AddCollider({ 1049, 417, 110, 63 }, Collider::Type::WALL);
 	playerWall[53] = app->collisions->AddCollider({ 1177, 417, 103, 63 }, Collider::Type::WALL);
 
+	if (app->player->IsEnabled() == 0)
+	{
+		app->player->Enable();
+	}
+
+	if (app->collisions->IsEnabled() == 0)
+	{
+		app->collisions->Enable();
+	}
+
 	return true;
 }
 
