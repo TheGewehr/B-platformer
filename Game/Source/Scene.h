@@ -38,6 +38,8 @@ public:
 
 	void OnCollision(Collider* bodyA, Collider* bodyB);
 
+	Collider* playerWall[100] = { nullptr };
+
 private:
 	
 	SDL_Texture* map;
@@ -46,10 +48,7 @@ private:
 
 	uint bonus_fx;
 	
-
-	
 	SDL_Rect end_rect;
-	
 };
 
 #endif // __SCENE_H__
