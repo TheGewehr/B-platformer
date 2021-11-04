@@ -272,27 +272,27 @@ bool Player::Update()
 
 bool Player::PostUpdate()
 {
-	if (backTimer > 0)
-	{
-		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-
-		if (in_iFrame)
-		{
-			iFrameTimer--;
-
-			if (((iFrameTimer % 10) >= 0) && ((iFrameTimer % 10) <= 5))
-			{
-				Blit(texture, xposition + playerWidthOffset, yposition, &rect, 1);
-
-			}
-
-			if (iFrameTimer <= 0) in_iFrame = !in_iFrame;
-		}
-		else
-		{
-			app->render->DrawTexture(texture, xposition + playerWidthOffset, yposition, &rect, 1);
-		}
-	}
+	//if (backTimer > 0)
+	//{
+	//	SDL_Rect rect = currentAnimation->GetCurrentFrame();
+	//
+	//	if (in_iFrame)
+	//	{
+	//		iFrameTimer--;
+	//
+	//		if (((iFrameTimer % 10) >= 0) && ((iFrameTimer % 10) <= 5))
+	//		{
+	//			app->render->DrawTexture(texture, xposition + playerWidthOffset, yposition, &rect, 1);
+	//
+	//		}
+	//
+	//		if (iFrameTimer <= 0) in_iFrame = !in_iFrame;
+	//	}
+	//	else
+	//	{
+	//		app->render->DrawTexture(texture, xposition + playerWidthOffset, yposition, &rect, 1);
+	//	}
+	//}
 	
 	return true;
 }
