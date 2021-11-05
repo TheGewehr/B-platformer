@@ -46,7 +46,7 @@ Player::Player() : Module()
 	walkingRigthAnim.PushBack({ 201, 62, 17, 34 });
 	walkingRigthAnim.PushBack({ 250, 61, 21, 35 });
 	walkingRigthAnim.loop = true;
-	walkingRigthAnim.speed = idleSpeed;
+	walkingRigthAnim.speed = animSpeed;
 
 	// Running animation right
 	runningRigthAnim.PushBack({ 4, 111, 25, 33 });
@@ -56,7 +56,7 @@ Player::Player() : Module()
 	runningRigthAnim.PushBack({ 200, 113, 26, 31 });
 	runningRigthAnim.PushBack({ 244, 113, 26, 31 });
 	runningRigthAnim.loop = true;
-	runningRigthAnim.speed = idleSpeed;
+	runningRigthAnim.speed = 2 * animSpeed;
 
 	// Jumping animation right
 	jumpingRigthAnim.PushBack({ 9, 209, 16, 31 });
@@ -82,10 +82,8 @@ Player::Player() : Module()
 	deathFromRightAnim.PushBack({ 147, 318, 35, 18 });
 	deathFromRightAnim.PushBack({ 195, 321, 34, 15 });
 	deathFromRightAnim.PushBack({ 243, 324, 35, 12 });
-	deathFromRightAnim.loop = true;
+	deathFromRightAnim.loop = false;
 	deathFromRightAnim.speed = deathSpeed;
-
-	SetAnimation(rightIdleAnim);
 }
 
 Player::~Player()
@@ -95,17 +93,19 @@ Player::~Player()
 
 bool Player::Start()
 {
-	////LOG("Loading player textures");
+	// LOG("Loading player textures");
 
 	bool ret = true;
 
 	// Add textures
 	texture = app->tex->Load("Assets/sprites/GraveRobber.png");
 
+	currentAnimation = &rightIdleAnim;
+
 	xposition = 15;
 	yposition = 400;
 
-	lastDirection = 2;
+	lastDirection = 5;
 	return ret;
 }
 
@@ -114,15 +114,15 @@ bool Player::Update()
 	bool ret = true;
 
 	// Movement Keys
-	keyUp = app->input->GetKey(SDL_SCANCODE_W);
-	keyLeft = app->input->GetKey(SDL_SCANCODE_A);
-	keyDown = app->input->GetKey(SDL_SCANCODE_S);
-	keyRight = app->input->GetKey(SDL_SCANCODE_D);
+	keyUp = app->input->GetKey(SDL_SCANCODE_UP);
+	keyLeft = app->input->GetKey(SDL_SCANCODE_LEFT);
+	keyDown = app->input->GetKey(SDL_SCANCODE_DOWN);
+	keyRight = app->input->GetKey(SDL_SCANCODE_RIGHT);
 	keyJump = app->input->GetKey(SDL_SCANCODE_SPACE);
 
-	/*
+	
 	if (!destroyed) {
-
+		// Left
 		if ((keyUp == KeyState::KEY_IDLE)
 			&& (keyLeft == KeyState::KEY_REPEAT)
 			&& (keyDown == KeyState::KEY_IDLE)
@@ -141,7 +141,7 @@ bool Player::Update()
 			}
 		}
 
-		//right
+		// Right
 		if ((keyUp == KeyState::KEY_IDLE)
 			&& (keyLeft == KeyState::KEY_IDLE)
 			&& (keyDown == KeyState::KEY_IDLE)
@@ -160,8 +160,9 @@ bool Player::Update()
 			}
 		}
 
-		//Up
 		/*
+		//Up
+		
 		if ((keyUp == KeyState::KEY_REPEAT)
 			&& (keyLeft == KeyState::KEY_IDLE)
 			&& (keyDown == KeyState::KEY_IDLE)
@@ -201,10 +202,9 @@ bool Player::Update()
 				SetAnimation(downIdleAnim);
 			}
 		}
-		
+		*/
 	}
-	*/
-
+	
 	// Idle Animations 
 	if ((keyUp == KeyState::KEY_IDLE)
 		&& (keyLeft == KeyState::KEY_IDLE)
@@ -214,12 +214,12 @@ bool Player::Update()
 
 		switch (lastDirection) {
 
-		case 3:
+		case 1:
 
 			SetAnimation(rightIdleAnim);
 			break;
 
-		case 7:
+		case 2:
 
 			SetAnimation(rightIdleAnim);
 			break;
