@@ -1,6 +1,7 @@
 #include "ModuleCollisions.h"
 
 #include "App.h"
+#include <iostream>
 
 #include "Render.h"
 #include "Input.h"
@@ -124,6 +125,8 @@ void ModuleCollisions::DebugDraw()
 	{
 		if (colliders[i] == nullptr)
 			continue;
+
+		std::cout <<" Aqui se printean los colliders";
 
 		switch (colliders[i]->type)
 		{

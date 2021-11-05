@@ -41,69 +41,69 @@ bool Scene::Start()
 	// MAP colliders
 
 	// Ground colliders
-	playerWall[0] = app->collisions->AddCollider({ 0, 416, 128, 64 }, Collider::Type::WALL);
-	playerWall[1] = app->collisions->AddCollider({ 352, 416, 32, 64 }, Collider::Type::WALL);
-	playerWall[2] = app->collisions->AddCollider({ 511, 416, 97, 64 }, Collider::Type::WALL);
-	playerWall[3] = app->collisions->AddCollider({ 704, 351, 128, 129 }, Collider::Type::WALL);
-	playerWall[4] = app->collisions->AddCollider({ 831, 224, 481, 64 }, Collider::Type::WALL);
-	playerWall[5] = app->collisions->AddCollider({ 832, 416, 96, 64 }, Collider::Type::WALL);
-	playerWall[6] = app->collisions->AddCollider({ 1159, 416, 18, 64 }, Collider::Type::WALL);
-	playerWall[7] = app->collisions->AddCollider({ 1031, 416, 18, 64 }, Collider::Type::WALL);
-	playerWall[8] = app->collisions->AddCollider({ 1280, 416, 32, 64 }, Collider::Type::WALL);
-	playerWall[9] = app->collisions->AddCollider({ 1439, 288, 161, 192 }, Collider::Type::WALL);
+	playerWall[0] = app->collisions->AddCollider({ 0, 416, 128, 64 }, Collider::Type::WALL,this);
+	playerWall[1] = app->collisions->AddCollider({ 352, 416, 32, 64 }, Collider::Type::WALL,this);
+	playerWall[2] = app->collisions->AddCollider({ 511, 416, 97, 64 }, Collider::Type::WALL, this);
+	playerWall[3] = app->collisions->AddCollider({ 704, 351, 128, 129 }, Collider::Type::WALL, this);
+	playerWall[4] = app->collisions->AddCollider({ 831, 224, 481, 64 }, Collider::Type::WALL, this);
+	playerWall[5] = app->collisions->AddCollider({ 832, 416, 96, 64 }, Collider::Type::WALL, this);
+	playerWall[6] = app->collisions->AddCollider({ 1159, 416, 18, 64 }, Collider::Type::WALL, this);
+	playerWall[7] = app->collisions->AddCollider({ 1031, 416, 18, 64 }, Collider::Type::WALL, this);
+	playerWall[8] = app->collisions->AddCollider({ 1280, 416, 32, 64 }, Collider::Type::WALL, this);
+	playerWall[9] = app->collisions->AddCollider({ 1439, 288, 161, 192 }, Collider::Type::WALL, this);
 
 		// Platform colliders
-	playerWall[10] = app->collisions->AddCollider({ 128, 288, 224, 32 }, Collider::Type::WALL);
-	playerWall[11] = app->collisions->AddCollider({ 448, 192, 32, 32 }, Collider::Type::WALL);
-	playerWall[12] = app->collisions->AddCollider({ 544, 256, 64, 32 }, Collider::Type::WALL);
+	playerWall[10] = app->collisions->AddCollider({ 128, 288, 224, 32 }, Collider::Type::WALL, this);
+	playerWall[11] = app->collisions->AddCollider({ 448, 192, 32, 32 }, Collider::Type::WALL, this);
+	playerWall[12] = app->collisions->AddCollider({ 544, 256, 64, 32 }, Collider::Type::WALL, this);
 
 		// Ramp 1 colliders
-	playerWall[13] = app->collisions->AddCollider({ 456, 472, 55, 9 }, Collider::Type::WALL);
-	playerWall[14] = app->collisions->AddCollider({ 465, 462, 46, 9 }, Collider::Type::WALL);
-	playerWall[15] = app->collisions->AddCollider({ 474, 453, 37, 9 }, Collider::Type::WALL);
-	playerWall[16] = app->collisions->AddCollider({ 483, 444, 28, 9 }, Collider::Type::WALL);
-	playerWall[17] = app->collisions->AddCollider({ 492, 435, 19, 9 }, Collider::Type::WALL);
-	playerWall[18] = app->collisions->AddCollider({ 501, 426, 10, 9 }, Collider::Type::WALL);
-	playerWall[19] = app->collisions->AddCollider({ 511, 417, 9, 9 }, Collider::Type::WALL);
+	playerWall[13] = app->collisions->AddCollider({ 456, 472, 55, 9 }, Collider::Type::WALL, this);
+	playerWall[14] = app->collisions->AddCollider({ 465, 462, 46, 9 }, Collider::Type::WALL, this);
+	playerWall[15] = app->collisions->AddCollider({ 474, 453, 37, 9 }, Collider::Type::WALL, this);
+	playerWall[16] = app->collisions->AddCollider({ 483, 444, 28, 9 }, Collider::Type::WALL, this);
+	playerWall[17] = app->collisions->AddCollider({ 492, 435, 19, 9 }, Collider::Type::WALL, this);
+	playerWall[18] = app->collisions->AddCollider({ 501, 426, 10, 9 }, Collider::Type::WALL, this);
+	playerWall[19] = app->collisions->AddCollider({ 511, 417, 9, 9 }, Collider::Type::WALL, this);
 
 		// Ramp 2 colliders
-	playerWall[20] = app->collisions->AddCollider({ 830, 225, 9, 9 }, Collider::Type::WALL);
-	playerWall[21] = app->collisions->AddCollider({ 821, 234, 10, 9 }, Collider::Type::WALL);
-	playerWall[22] = app->collisions->AddCollider({ 812, 243, 19, 9 }, Collider::Type::WALL);
-	playerWall[23] = app->collisions->AddCollider({ 803, 252, 28, 9 }, Collider::Type::WALL);
-	playerWall[24] = app->collisions->AddCollider({ 794, 261, 37, 9 }, Collider::Type::WALL);
-	playerWall[25] = app->collisions->AddCollider({ 785, 270, 46, 9 }, Collider::Type::WALL);
-	playerWall[26] = app->collisions->AddCollider({ 776, 279, 55, 9 }, Collider::Type::WALL);
-	playerWall[27] = app->collisions->AddCollider({ 767, 288, 64, 9 }, Collider::Type::WALL);
-	playerWall[28] = app->collisions->AddCollider({ 758, 297, 73, 9 }, Collider::Type::WALL);
-	playerWall[29] = app->collisions->AddCollider({ 749, 306, 82, 9 }, Collider::Type::WALL);
-	playerWall[30] = app->collisions->AddCollider({ 740, 315, 91, 9 }, Collider::Type::WALL);
-	playerWall[31] = app->collisions->AddCollider({ 731, 324, 1100, 9 }, Collider::Type::WALL);
-	playerWall[32] = app->collisions->AddCollider({ 722, 333, 109, 9 }, Collider::Type::WALL);
-	playerWall[33] = app->collisions->AddCollider({ 713, 342, 118, 9 }, Collider::Type::WALL);
+	playerWall[20] = app->collisions->AddCollider({ 830, 225, 9, 9 }, Collider::Type::WALL, this);
+	playerWall[21] = app->collisions->AddCollider({ 821, 234, 10, 9 }, Collider::Type::WALL, this);
+	playerWall[22] = app->collisions->AddCollider({ 812, 243, 19, 9 }, Collider::Type::WALL, this);
+	playerWall[23] = app->collisions->AddCollider({ 803, 252, 28, 9 }, Collider::Type::WALL, this);
+	playerWall[24] = app->collisions->AddCollider({ 794, 261, 37, 9 }, Collider::Type::WALL, this);
+	playerWall[25] = app->collisions->AddCollider({ 785, 270, 46, 9 }, Collider::Type::WALL, this);
+	playerWall[26] = app->collisions->AddCollider({ 776, 279, 55, 9 }, Collider::Type::WALL, this);
+	playerWall[27] = app->collisions->AddCollider({ 767, 288, 64, 9 }, Collider::Type::WALL, this);
+	playerWall[28] = app->collisions->AddCollider({ 758, 297, 73, 9 }, Collider::Type::WALL, this);
+	playerWall[29] = app->collisions->AddCollider({ 749, 306, 82, 9 }, Collider::Type::WALL, this);
+	playerWall[30] = app->collisions->AddCollider({ 740, 315, 91, 9 }, Collider::Type::WALL, this);
+	playerWall[31] = app->collisions->AddCollider({ 731, 324, 1100, 9 }, Collider::Type::WALL, this);
+	playerWall[32] = app->collisions->AddCollider({ 722, 333, 109, 9 }, Collider::Type::WALL, this);
+	playerWall[33] = app->collisions->AddCollider({ 713, 342, 118, 9 }, Collider::Type::WALL, this);
 
 		// Ramp 3 colliders
-	playerWall[34] = app->collisions->AddCollider({ 1438, 289, 9, 9 }, Collider::Type::WALL);
-	playerWall[35] = app->collisions->AddCollider({ 1429, 298, 10, 9 }, Collider::Type::WALL);
-	playerWall[36] = app->collisions->AddCollider({ 1420, 307, 19, 9 }, Collider::Type::WALL);
-	playerWall[37] = app->collisions->AddCollider({ 1411, 316, 28, 9 }, Collider::Type::WALL);
-	playerWall[38] = app->collisions->AddCollider({ 1402, 325, 37, 9 }, Collider::Type::WALL);
-	playerWall[49] = app->collisions->AddCollider({ 1393, 334, 46, 9 }, Collider::Type::WALL);
-	playerWall[40] = app->collisions->AddCollider({ 1384, 343, 55, 9 }, Collider::Type::WALL);
-	playerWall[41] = app->collisions->AddCollider({ 1375, 352, 64, 9 }, Collider::Type::WALL);
-	playerWall[42] = app->collisions->AddCollider({ 1366, 361, 73, 9 }, Collider::Type::WALL);
-	playerWall[43] = app->collisions->AddCollider({ 1357, 370, 82, 9 }, Collider::Type::WALL);
-	playerWall[44] = app->collisions->AddCollider({ 1348, 379, 91, 9 }, Collider::Type::WALL);
-	playerWall[45] = app->collisions->AddCollider({ 1339, 388, 100, 9 }, Collider::Type::WALL);
-	playerWall[46] = app->collisions->AddCollider({ 1330, 397, 109, 9 }, Collider::Type::WALL);
-	playerWall[47] = app->collisions->AddCollider({ 1321, 406, 118, 9 }, Collider::Type::WALL);
-	playerWall[48] = app->collisions->AddCollider({ 1312, 415, 127, 44 }, Collider::Type::WALL);
+	playerWall[34] = app->collisions->AddCollider({ 1438, 289, 9, 9 }, Collider::Type::WALL, this);
+	playerWall[35] = app->collisions->AddCollider({ 1429, 298, 10, 9 }, Collider::Type::WALL, this);
+	playerWall[36] = app->collisions->AddCollider({ 1420, 307, 19, 9 }, Collider::Type::WALL, this);
+	playerWall[37] = app->collisions->AddCollider({ 1411, 316, 28, 9 }, Collider::Type::WALL, this);
+	playerWall[38] = app->collisions->AddCollider({ 1402, 325, 37, 9 }, Collider::Type::WALL, this);
+	playerWall[49] = app->collisions->AddCollider({ 1393, 334, 46, 9 }, Collider::Type::WALL, this);
+	playerWall[40] = app->collisions->AddCollider({ 1384, 343, 55, 9 }, Collider::Type::WALL, this);
+	playerWall[41] = app->collisions->AddCollider({ 1375, 352, 64, 9 }, Collider::Type::WALL, this);
+	playerWall[42] = app->collisions->AddCollider({ 1366, 361, 73, 9 }, Collider::Type::WALL, this);
+	playerWall[43] = app->collisions->AddCollider({ 1357, 370, 82, 9 }, Collider::Type::WALL, this);
+	playerWall[44] = app->collisions->AddCollider({ 1348, 379, 91, 9 }, Collider::Type::WALL, this);
+	playerWall[45] = app->collisions->AddCollider({ 1339, 388, 100, 9 }, Collider::Type::WALL, this);
+	playerWall[46] = app->collisions->AddCollider({ 1330, 397, 109, 9 }, Collider::Type::WALL, this);
+	playerWall[47] = app->collisions->AddCollider({ 1321, 406, 118, 9 }, Collider::Type::WALL, this);
+	playerWall[48] = app->collisions->AddCollider({ 1312, 415, 127, 44 }, Collider::Type::WALL, this);
 
 	// Water colliders
-	playerWall[49] = app->collisions->AddCollider({ 128, 417, 224, 63 }, Collider::Type::WALL);
-	playerWall[50] = app->collisions->AddCollider({ 928, 417, 103, 63 }, Collider::Type::WALL);
-	playerWall[51] = app->collisions->AddCollider({ 1049, 417, 110, 63 }, Collider::Type::WALL);
-	playerWall[53] = app->collisions->AddCollider({ 1177, 417, 103, 63 }, Collider::Type::WALL);
+	playerWall[49] = app->collisions->AddCollider({ 128, 417, 224, 63 }, Collider::Type::WALL, this);
+	playerWall[50] = app->collisions->AddCollider({ 928, 417, 103, 63 }, Collider::Type::WALL, this);
+	playerWall[51] = app->collisions->AddCollider({ 1049, 417, 110, 63 }, Collider::Type::WALL, this);
+	playerWall[53] = app->collisions->AddCollider({ 1177, 417, 103, 63 }, Collider::Type::WALL, this);
 
 	if (app->player->IsEnabled() == 0)
 	{
@@ -192,34 +192,37 @@ bool Scene::CleanUp()
 void Scene::OnCollision(Collider* c1, Collider* c2)
 {
 
-
-	//AXIAL
-	if (c1 == app->player->colBoxUp && c2->type == Collider::WALL) {
-		app->player->colCheck[0] = true;
-	}
-	if (c1 == app->player->colBoxLeft && c2->type == Collider::WALL) {
-		app->player->colCheck[2] = true;
-	}
-	if (c1 == app->player->colBoxDown && c2->type == Collider::WALL) {
-		app->player->colCheck[4] = true;
-	}
-	if (c1 == app->player->colBoxRight && c2->type == Collider::WALL) {
-		app->player->colCheck[6] = true;
+	if (c1 == app->player->hitBox && c2->type == Collider::WALL) {
+		app->player->xposition = 0;
 	}
 
-	//DIAGONAL
-	if (c1 == app->player->colBoxUpLeft && c2->type == Collider::WALL) {
-		app->player->colCheck[1] = true;
-	}
-	if (c1 == app->player->colBoxDownLeft && c2->type == Collider::WALL) {
-		app->player->colCheck[3] = true;
-	}
-	if (c1 == app->player->colBoxDownRight && c2->type == Collider::WALL) {
-		app->player->colCheck[5] = true;
-	}
-	if (c1 == app->player->colBoxUpRight && c2->type == Collider::WALL) {
-		app->player->colCheck[7] = true;
-	}
+	////AXIAL
+	//if (c1 == app->player->colBoxUp && c2->type == Collider::WALL) {
+	//	app->player->colCheck[0] = true;
+	//}
+	//if (c1 == app->player->colBoxLeft && c2->type == Collider::WALL) {
+	//	app->player->colCheck[2] = true;
+	//}
+	//if (c1 == app->player->colBoxDown && c2->type == Collider::WALL) {
+	//	app->player->colCheck[4] = true;
+	//}
+	//if (c1 == app->player->colBoxRight && c2->type == Collider::WALL) {
+	//	app->player->colCheck[6] = true;
+	//}
+	//
+	////DIAGONAL
+	//if (c1 == app->player->colBoxUpLeft && c2->type == Collider::WALL) {
+	//	app->player->colCheck[1] = true;
+	//}
+	//if (c1 == app->player->colBoxDownLeft && c2->type == Collider::WALL) {
+	//	app->player->colCheck[3] = true;
+	//}
+	//if (c1 == app->player->colBoxDownRight && c2->type == Collider::WALL) {
+	//	app->player->colCheck[5] = true;
+	//}
+	//if (c1 == app->player->colBoxUpRight && c2->type == Collider::WALL) {
+	//	app->player->colCheck[7] = true;
+	//}
 
 	////rock
 	//
