@@ -121,12 +121,13 @@ bool ModuleCollisions::PostUpdate()
 void ModuleCollisions::DebugDraw()
 {
 	Uint8 alpha = 80;
+
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
 		if (colliders[i] == nullptr)
 			continue;
 
-		std::cout <<" Aqui se printean los colliders";
+		std::cout << " Aqui se printean los colliders " << colliders[i] << std::endl;
 
 		switch (colliders[i]->type)
 		{
