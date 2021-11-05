@@ -5,40 +5,40 @@
       <Filter>External\PugiXml</Filter>
     </ClCompile>
     <ClCompile Include="Source\App.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Audio.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Input.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Main.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Map.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Render.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Scene.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Textures.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Window.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Player.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Collider.cpp">
       <Filter>Utils</Filter>
     </ClCompile>
     <ClCompile Include="Source\ModuleCollisions.cpp">
-      <Filter>CPP Files</Filter>
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -119,7 +119,7 @@
     <Filter Include="Heather Files">
       <UniqueIdentifier>{c77dca99-cf69-4fae-a4ca-df92d5eb19e7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="CPP Files">
+    <Filter Include="Source Files">
       <UniqueIdentifier>{58c791d5-bb2c-47ab-bd99-f885191ff375}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
