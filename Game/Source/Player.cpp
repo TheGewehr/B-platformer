@@ -84,6 +84,8 @@ Player::Player() : Module()
 	deathFromRightAnim.PushBack({ 243, 324, 35, 12 });
 	deathFromRightAnim.loop = true;
 	deathFromRightAnim.speed = deathSpeed;
+
+	SetAnimation(rightIdleAnim);
 }
 
 Player::~Player()
@@ -93,7 +95,7 @@ Player::~Player()
 
 bool Player::Start()
 {
-	//LOG("Loading player textures");
+	////LOG("Loading player textures");
 
 	bool ret = true;
 
@@ -256,15 +258,15 @@ bool Player::Update()
 
 	////////////////////////////////////////////
 	hitBox->SetPos(xposition, yposition + playerHeightOffset);
-
-	colBoxUp->SetPos(xposition, yposition - speed + playerHeightOffset);
-	colBoxUpLeft->SetPos(xposition - diagonalSpeed, yposition - diagonalSpeed + playerHeightOffset);
-	colBoxLeft->SetPos(xposition - speed, yposition + playerHeightOffset);
-	colBoxDownLeft->SetPos(xposition - diagonalSpeed, yposition + playerHeight + playerHeightOffset);
-	colBoxDown->SetPos(xposition, yposition + playerHeight + playerHeightOffset);
-	colBoxDownRight->SetPos(xposition + playerWidth, yposition + playerHeight + playerHeightOffset);
-	colBoxRight->SetPos(xposition + playerWidth, yposition + playerHeightOffset);
-	colBoxUpRight->SetPos(xposition + playerWidth, yposition - diagonalSpeed + playerHeightOffset);
+	
+	//colBoxUp->SetPos(xposition, yposition - speed + playerHeightOffset);
+	//colBoxUpLeft->SetPos(xposition - diagonalSpeed, yposition - diagonalSpeed + playerHeightOffset);
+	//colBoxLeft->SetPos(xposition - speed, yposition + playerHeightOffset);
+	//colBoxDownLeft->SetPos(xposition - diagonalSpeed, yposition + playerHeight + playerHeightOffset);
+	//colBoxDown->SetPos(xposition, yposition + playerHeight + playerHeightOffset);
+	//colBoxDownRight->SetPos(xposition + playerWidth, yposition + playerHeight + playerHeightOffset);
+	//colBoxRight->SetPos(xposition + playerWidth, yposition + playerHeightOffset);
+	//colBoxUpRight->SetPos(xposition + playerWidth, yposition - diagonalSpeed + playerHeightOffset);
 
 	currentAnimation->Update();
 	return ret;
@@ -272,27 +274,26 @@ bool Player::Update()
 
 bool Player::PostUpdate()
 {
-	//if (backTimer > 0)
-	//{
-	//	SDL_Rect rect = currentAnimation->GetCurrentFrame();
-	//
-	//	if (in_iFrame)
-	//	{
-	//		iFrameTimer--;
-	//
-	//		if (((iFrameTimer % 10) >= 0) && ((iFrameTimer % 10) <= 5))
-	//		{
-	//			app->render->DrawTexture(texture, xposition + playerWidthOffset, yposition, &rect, 1);
-	//
-	//		}
-	//
-	//		if (iFrameTimer <= 0) in_iFrame = !in_iFrame;
-	//	}
-	//	else
-	//	{
-	//		app->render->DrawTexture(texture, xposition + playerWidthOffset, yposition, &rect, 1);
-	//	}
-	//}
+	if (backTimer > 0)
+	{
+		
+		if (in_iFrame)
+		{
+			iFrameTimer--;
+		
+			if (((iFrameTimer % 10) >= 0) && ((iFrameTimer % 10) <= 5))
+			{
+				app->render->DrawTexture(texture, xposition + playerWidthOffset, yposition, &currentAnimation->GetCurrentFrame(), 1);
+	
+			}
+	
+			if (iFrameTimer <= 0) in_iFrame = !in_iFrame;
+		}
+		else
+		{
+			app->render->DrawTexture(texture, xposition + playerWidthOffset, yposition, &currentAnimation->GetCurrentFrame(), 1);
+		}
+	}
 	
 	return true;
 }

@@ -1,7 +1,7 @@
 #include "App.h"
 
 #include "Defs.h"
-#include "Log.h"
+
 
 // NOTE: SDL redefines main function
 #include "SDL/include/SDL.h"
@@ -27,7 +27,7 @@ App* app = NULL;
 
 int main(int argc, char* args[])
 {
-	LOG("Engine starting ...");
+	//LOG("Engine starting ...");
 
 	MainState state = CREATE;
 	int result = EXIT_FAILURE;
@@ -39,7 +39,7 @@ int main(int argc, char* args[])
 
 			// Allocate the engine --------------------------------------------
 			case CREATE:
-			LOG("CREATION PHASE ===============================");
+			//LOG("CREATION PHASE ===============================");
 
 			app = new App(argc, args);
 
@@ -52,12 +52,12 @@ int main(int argc, char* args[])
 
 			// Awake all modules -----------------------------------------------
 			case AWAKE:
-			LOG("AWAKE PHASE ===============================");
+			//LOG("AWAKE PHASE ===============================");
 			if(app->Awake() == true)
 				state = START;
 			else
 			{
-				LOG("ERROR: Awake failed");
+				//LOG("ERROR: Awake failed");
 				state = FAIL;
 			}
 
@@ -65,16 +65,16 @@ int main(int argc, char* args[])
 
 			// Call all modules before first frame  ----------------------------
 			case START:
-			LOG("START PHASE ===============================");
+			//LOG("START PHASE ===============================");
 			if(app->Start() == true)
 			{
 				state = LOOP;
-				LOG("UPDATE PHASE ===============================");
+				//LOG("UPDATE PHASE ===============================");
 			}
 			else
 			{
 				state = FAIL;
-				LOG("ERROR: Start failed");
+				//LOG("ERROR: Start failed");
 			}
 			break;
 
@@ -86,7 +86,7 @@ int main(int argc, char* args[])
 
 			// Cleanup allocated memory -----------------------------------------
 			case CLEAN:
-			LOG("CLEANUP PHASE ===============================");
+			//LOG("CLEANUP PHASE ===============================");
 			if(app->CleanUp() == true)
 			{
 				RELEASE(app);
@@ -100,14 +100,14 @@ int main(int argc, char* args[])
 
 			// Exit with errors and shame ---------------------------------------
 			case FAIL:
-			LOG("Exiting with errors :(");
+			//LOG("Exiting with errors :(");
 			result = EXIT_FAILURE;
 			state = EXIT;
 			break;
 		}
 	}
 
-	LOG("... Bye! :)\n");
+	//LOG("... Bye! :)\n");
 
 	// Dump memory leaks
 	return result;

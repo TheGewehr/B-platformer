@@ -8,7 +8,7 @@
 #include "Scene.h"
 #include "Map.h"
 #include "Defs.h"
-#include "Log.h"
+
 #include "Player.h"
 
 //#include "Collisions.h"
@@ -156,7 +156,7 @@ pugi::xml_node App::LoadConfig(pugi::xml_document& configFile) const
 
 	if (result == NULL)
 	{
-		LOG("Could not load xml file: %s. pugi error: %s", CONFIG_FILENAME, result.description());
+		//LOG("Could not load xml file: %s. pugi error: %s", CONFIG_FILENAME, result.description());
 	}
 	else
 	{

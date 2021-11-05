@@ -118,8 +118,6 @@
     <ClInclude Include="Source\Window.h" />
     <ClInclude Include="Source\Defs.h" />
     <ClInclude Include="Source\List.h" />
-    <ClInclude Include="Source\Log.h" />
-    <ClCompile Include="Source\Log.cpp" />
     <ClInclude Include="Source\Point.h" />
     <ClInclude Include="Source\SString.h" />
     <ClInclude Include="Source\DynArray.h" />

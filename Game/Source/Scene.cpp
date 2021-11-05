@@ -10,7 +10,7 @@
 #include "ModuleCollisions.h"
 
 #include "Defs.h"
-#include "Log.h"
+
 
 Scene::Scene() : Module()
 {
@@ -24,7 +24,7 @@ Scene::~Scene()
 // Called before render is available
 bool Scene::Awake()
 {
-	LOG("Loading Scene");
+	//LOG("Loading Scene");
 	bool ret = true;
 
 	return ret;
@@ -137,16 +137,16 @@ bool Scene::Update(float dt)
 		app->SaveGameRequest();
 
 	if(app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
-		app->render->camera.y -= 1;
+		app->player->yposition -= 1;
 
 	if(app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
-		app->render->camera.y += 1;
+		app->player->yposition += 1;
 
 	if(app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
-		app->render->camera.x -= 1;
+		app->player->xposition -= 1;
 
 	if(app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
-		app->render->camera.x += 1;
+		app->player->xposition += 1;
 
 
 	//app->render->DrawTexture(img, 380, 100); // Placeholder not needed any more
@@ -162,6 +162,9 @@ bool Scene::Update(float dt)
 
 	app->win->SetTitle(title.GetString());
 
+
+	//app->collisions->AddCollider();
+
 	return true;
 }
 
@@ -176,10 +179,12 @@ bool Scene::PostUpdate()
 	return ret;
 }
 
+
+
 // Called before quitting
 bool Scene::CleanUp()
 {
-	LOG("Freeing scene");
+	//LOG("Freeing scene");
 
 	return true;
 }

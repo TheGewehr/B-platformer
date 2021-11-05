@@ -5,7 +5,6 @@
 #include "Map.h"
 
 #include "Defs.h"
-#include "Log.h"
 
 #include <math.h>
 
@@ -21,7 +20,7 @@ Map::~Map()
 // Called before render is available
 bool Map::Awake(pugi::xml_node& config)
 {
-    LOG("Loading Map Parser");
+    //LOG("Loading Map Parser");
     bool ret = true;
 
     folder.Create(config.child("folder").child_value());
@@ -103,7 +102,7 @@ SDL_Rect TileSet::GetTileRect(int id) const
 // Called before quitting
 bool Map::CleanUp()
 {
-    LOG("Unloading map");
+    //LOG("Unloading map");
 
     // L03: DONE 2: Make sure you clean up any memory allocated from tilesets/map
     // Remove all tilesets
@@ -142,7 +141,7 @@ bool Map::Load(const char* filename)
 
     if(result == NULL)
     {
-        LOG("Could not load map xml file %s. pugi error: %s", filename, result.description());
+        //LOG("Could not load map xml file %s. pugi error: %s", filename, result.description());
         ret = false;
     }
 
@@ -186,7 +185,7 @@ bool Map::LoadMap(pugi::xml_node mapFile)
 
 	if (map == NULL)
 	{
-		LOG("Error parsing map xml file: Cannot find 'map' tag.");
+		//LOG("Error parsing map xml file: Cannot find 'map' tag.");
 		ret = false;
 	}
 	else
@@ -245,7 +244,7 @@ bool Map::LoadTilesetImage(pugi::xml_node& tileset_node, TileSet* set)
 
 	if (image == NULL)
 	{
-		LOG("Error parsing tileset xml file: Cannot find 'image' tag.");
+		//LOG("Error parsing tileset xml file: Cannot find 'image' tag.");
 		ret = false;
 	}
 	else

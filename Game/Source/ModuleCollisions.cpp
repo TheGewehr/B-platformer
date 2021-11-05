@@ -103,7 +103,7 @@ bool ModuleCollisions::PreUpdate()
 
 bool ModuleCollisions::Update()
 {
-	if (app->input->GetKey(SDL_SCANCODE_F1) == KEY_DOWN)
+	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
 		debug = !debug;
 
 	return true;
@@ -167,7 +167,7 @@ void ModuleCollisions::DebugDraw()
 // Called before quitting
 bool ModuleCollisions::CleanUp()
 {
-	//LOG("Freeing all colliders");
+	////LOG("Freeing all colliders");
 
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
