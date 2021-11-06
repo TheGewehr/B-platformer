@@ -2,6 +2,7 @@
 #define __MODULE_COLLISIONS_H__
 
 #define MAX_COLLIDERS 200
+#define GRAVITY 1
 
 #include "Module.h"
 #include "Collider.h"

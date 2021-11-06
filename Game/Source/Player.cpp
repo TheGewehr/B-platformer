@@ -5,10 +5,11 @@
 #include "Render.h"
 #include "Audio.h"
 #include "Scene.h"
-#include "Globals.h"
+#include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_scancode.h"
 #include <stdio.h>
+#include <iostream>
 #include <string>
 #include <math.h>
 
@@ -103,23 +104,30 @@ bool Player::Start()
 	currentAnimation = &rightIdleAnim;
 
 	xposition = 15;
-	yposition = 400;
+	yposition = 300;
 
 	lastDirection = 5;
+
+	colBox= app->collisions->AddCollider({ 20, 323, 16, 10 }, Collider::Type::PLAYER_COLLBOX, this);
+	hitBox = app->collisions->AddCollider({ xposition, yposition, 20, 30 }, Collider::Type::PLAYER_HITBOX, this);
+
 	return ret;
 }
 
 bool Player::Update()
 {
 	bool ret = true;
+	
+		
 
-	// Movement Keys
-	keyUp = app->input->GetKey(SDL_SCANCODE_UP);
-	keyLeft = app->input->GetKey(SDL_SCANCODE_LEFT);
-	keyDown = app->input->GetKey(SDL_SCANCODE_DOWN);
-	keyRight = app->input->GetKey(SDL_SCANCODE_RIGHT);
-	keyJump = app->input->GetKey(SDL_SCANCODE_SPACE);
 
+	///std::cout << "    " << xposition << "      " << yposition << std::endl;
+
+	//colBox-xposition;
+
+	///std::cout << "    " << colBox->rect.x << "      " << colBox->rect.y << std::endl;
+
+	
 	
 	if (!destroyed) {
 		// Left
@@ -130,15 +138,15 @@ bool Player::Update()
 		{
 			lastDirection = 3;
 
-			if (!colCheck[2])
-			{
-				xposition -= speed;
-				SetAnimation(walkingRigthAnim);
-				colCheck[2] = false;
-			}
-			else {
-				SetAnimation(rightIdleAnim);
-			}
+			//if (!colCheck[2])
+			//{
+			//	xposition -= speed;
+			//	SetAnimation(walkingRigthAnim);
+			//	colCheck[2] = false;
+			//}
+			//else {
+			//	SetAnimation(rightIdleAnim);
+			//}
 		}
 
 		// Right
@@ -149,15 +157,15 @@ bool Player::Update()
 		{
 			lastDirection = 7;
 
-			if (!colCheck[6])
-			{
-				xposition += speed;
-				SetAnimation(walkingRigthAnim);
-				colCheck[5] = false;
-			}
-			else {
-				SetAnimation(rightIdleAnim);
-			}
+			//if (!colCheck[6])
+			//{
+			//	xposition += speed;
+			//	SetAnimation(walkingRigthAnim);
+			//	colCheck[5] = false;
+			//}
+			//else {
+			//	SetAnimation(rightIdleAnim);
+			//}
 		}
 
 		/*
@@ -257,7 +265,8 @@ bool Player::Update()
 	}
 
 	////////////////////////////////////////////
-	hitBox->SetPos(xposition, yposition + playerHeightOffset);
+	//app->collisions->AddCollider({ xposition, yposition , 20,20}, Collider::Type::PLAYER_COLLBOX,this);
+	//hitBox->SetPos(xposition, yposition + playerHeightOffset);
 	
 	//colBoxUp->SetPos(xposition, yposition - speed + playerHeightOffset);
 	//colBoxUpLeft->SetPos(xposition - diagonalSpeed, yposition - diagonalSpeed + playerHeightOffset);
@@ -300,32 +309,14 @@ bool Player::PostUpdate()
 
 void Player::OnCollision(Collider* c1, Collider* c2)
 {
-	//AXIAL
-	if (c1 == colBoxUp && c2->type == Collider::WALL) {
-		colCheck[0] = true;
-	}
-	if (c1 == colBoxLeft && c2->type == Collider::WALL) {
-		colCheck[2] = true;
-	}
-	if (c1 == colBoxDown && c2->type == Collider::WALL) {
-		colCheck[4] = true;
-	}
-	if (c1 == colBoxRight && c2->type == Collider::WALL) {
-		colCheck[6] = true;
-	}
+	for (uint i = 0; i < MAX_COLLIDERS; ++i)
+	{
+		if (app->collisions->colliders[i] == nullptr)
+			continue;
 
-	//DIAGONAL
-	if (c1 == colBoxUpLeft && c2->type == Collider::WALL) {
-		colCheck[1] = true;
-	}
-	if (c1 == colBoxDownLeft && c2->type == Collider::WALL) {
-		colCheck[3] = true;
-	}
-	if (c1 == colBoxDownRight && c2->type == Collider::WALL) {
-		colCheck[5] = true;
-	}
-	if (c1 == colBoxUpRight && c2->type == Collider::WALL) {
-		colCheck[7] = true;
+		if (c1->type == Collider::PLAYER_COLLBOX && c2->type == Collider::WALL) {
+			app->player->yposition -= GRAVITY;
+		}
 	}
 }
 

@@ -125,28 +125,29 @@ public:
 
 	// The player's collider
 	Collider* hitBox = nullptr;
+	Collider* colBox = nullptr;
 
-	Collider* colBoxUp = nullptr;
-	Collider* colBoxUpLeft = nullptr;
-	Collider* colBoxLeft = nullptr;
-	Collider* colBoxDownLeft = nullptr;
-	Collider* colBoxDown = nullptr;
-	Collider* colBoxDownRight = nullptr;
-	Collider* colBoxRight = nullptr;
-	Collider* colBoxUpRight = nullptr;
-
-	int collisionID;
-
-	bool colUp = false;
-	bool colUpLeft = false;
-	bool colLeft = false;
-	bool colDownLeft = false;
-	bool colDown = false;
-	bool colDownRight = false;
-	bool colRight = false;
-	bool colUpRight = false;
-
-	bool colCheck[8] = { false };
+	//Collider* colBoxUp = nullptr;
+	//Collider* colBoxUpLeft = nullptr;
+	//Collider* colBoxLeft = nullptr;
+	//Collider* colBoxDownLeft = nullptr;
+	//Collider* colBoxDown = nullptr;
+	//Collider* colBoxDownRight = nullptr;
+	//Collider* colBoxRight = nullptr;
+	//Collider* colBoxUpRight = nullptr;
+	//
+	//int collisionID;
+	//
+	//bool colUp = false;
+	//bool colUpLeft = false;
+	//bool colLeft = false;
+	//bool colDownLeft = false;
+	//bool colDown = false;
+	//bool colDownRight = false;
+	//bool colRight = false;
+	//bool colUpRight = false;
+	//
+	//bool colCheck[8] = { false };
 
 };
 

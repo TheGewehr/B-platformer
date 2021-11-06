@@ -4,6 +4,7 @@
 #include <iostream>
 
 #include "Render.h"
+#include "Player.h"
 #include "Input.h"
 #include "SDL/include/SDL_Scancode.h"
 
@@ -91,10 +92,16 @@ bool ModuleCollisions::PreUpdate()
 
 			if (matrix[c1->type][c2->type] && c1->Intersects(c2->rect) && (c2 != nullptr) && c1 != nullptr)
 			{
+				std::cout << " Hay una interseccion "<< std::endl;
 				for (uint i = 0; i < MAX_LISTENERS; ++i)
 					if (c1->listeners[i] != nullptr) c1->listeners[i]->OnCollision(c1, c2);
 				for (uint i = 0; i < MAX_LISTENERS; ++i)
 					if (c2->listeners[i] != nullptr) c2->listeners[i]->OnCollision(c2, c1);
+
+				app->player->yposition -= GRAVITY;
+				app->player->colBox->rect.y -= GRAVITY;
+				app->player->hitBox->rect.y -= GRAVITY;
+				
 			}
 		}
 	}
@@ -104,24 +111,52 @@ bool ModuleCollisions::PreUpdate()
 
 bool ModuleCollisions::Update(float dt)
 {
-	//if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
-	//{
-	//	if (debug == true)
-	//	{
-	//		debug = false;
-	//	}
-	//	else
-	//	{
-	//		debug = true;
-	//	}
-	//}
+	// Here all movements are applyed
+	// Gravity
 
+	app->player->yposition += GRAVITY;
+	app->player->colBox->rect.y += GRAVITY;
+	app->player->hitBox->rect.y += GRAVITY;
+
+	// Player movement
+	if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	{
+		app->player->yposition -= 1;
+		app->player->colBox->rect.y -= 1;
+		app->player->hitBox->rect.y -= 1;
+	}
+	
+	
+	if (app->input->GetKey(SDL_SCANCODE_DOWN) == KEY_REPEAT)
+	{
+		app->player->yposition += 1;
+		app->player->colBox->rect.y += 1;
+		app->player->hitBox->rect.y += 1;
+	}
+	
+	if (app->input->GetKey(SDL_SCANCODE_LEFT) == KEY_REPEAT)
+	{
+		app->player->xposition -= 1;
+		app->player->colBox->rect.x -= 1;
+		app->player->hitBox->rect.x -= 1;
+	}
+	
+	
+	if (app->input->GetKey(SDL_SCANCODE_RIGHT) == KEY_REPEAT)
+	{
+		app->player->xposition += 1;
+		app->player->colBox->rect.x += 1;
+		app->player->hitBox->rect.x += 1;
+	}
+	
 	if (app->input->GetKey(SDL_SCANCODE_I) == KEY_DOWN)
 	{
 		debug = !debug;
-
+	
 	}
-	return true;
+	
+
+	
 		
 	return true;
 }
@@ -138,12 +173,13 @@ void ModuleCollisions::DebugDraw()
 {
 	Uint8 alpha = 80;
 
+
 	for (uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
 		if (colliders[i] == nullptr)
 			continue;
 
-		std::cout << " Aqui se printean los colliders " << colliders[i] << std::endl;
+		//std::cout << " Aqui se printean los colliders " << colliders[i] << std::endl;
 
 		switch (colliders[i]->type)
 		{
@@ -224,6 +260,14 @@ int ModuleCollisions::GetMaxColliders() const {
 
 void ModuleCollisions::OnCollision(Collider* c1, Collider* c2)
 {
+	
+		//if ((c1->type == Collider::PLAYER_COLLBOX && c2->type == Collider::WALL)||(c2->type == Collider::PLAYER_COLLBOX && c1->type == Collider::WALL)) 
+		//{
+		//	app->player->yposition -= GRAVITY;
+		//	app->player->colBox->rect.y -= GRAVITY;
+		//	app->player->hitBox->rect.y -= GRAVITY;
+		//}
+	
 }
 
 void ModuleCollisions::RemoveCollider(Collider* collider)
