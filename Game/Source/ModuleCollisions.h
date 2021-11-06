@@ -19,25 +19,33 @@ public:
 	// Called at the beginning of the application loop
 	// Removes all colliders pending to delete
 	// Checks for new collisions and calls its listeners
-	bool PreUpdate();
+	bool PreUpdate() override;
 
 	// Called at the middle of the application loop
 	// Switches the debug mode on/off
-	bool Update();
+	bool Update(float dt) override;
 
 	// Called at the end of the application loop
 	// Draw all colliders (if debug mode is enabled)
-	bool PostUpdate();
+	bool PostUpdate() override;
 
 	// Removes all existing colliders
-	bool CleanUp();
+	bool CleanUp() override;
+
+	void OnCollision(Collider* c1, Collider* c2) override;
 
 	// Adds a new collider to the list
 	Collider* AddCollider(SDL_Rect rect, Collider::Type type, Module* listener = nullptr);
 
+	// Removes the collider memory and removes it from the colliders array
+	void RemoveCollider(Collider* collider);
+
+	void RemoveColliderType(Collider::Type type);
+
 	// Draws all existing colliders with some transparency
 	void DebugDraw();
 
+	// All existing colliders in the scene
 	Collider* colliders[MAX_COLLIDERS] = { nullptr };
 
 	int GetMaxColliders() const;

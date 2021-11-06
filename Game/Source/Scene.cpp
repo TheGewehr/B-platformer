@@ -39,7 +39,7 @@ bool Scene::Start()
 	img = app->tex->Load("Assets/background/Background.png");
 
 	// MAP colliders
-
+	//app->collisions->colliders[0] = new Collider({ 20, 20, 100, 100 }, Collider::Type::WALL, this);
 	// Ground colliders
 	app->collisions->AddCollider({ 0, 416, 128, 64 }, Collider::Type::WALL,this);
 	app->collisions->AddCollider({ 352, 416, 32, 64 }, Collider::Type::WALL,this);
@@ -174,6 +174,8 @@ bool Scene::PostUpdate()
 
 	if(app->input->GetKey(SDL_SCANCODE_ESCAPE) == KEY_DOWN)
 		ret = false;
+
+
 
 	return ret;
 }

@@ -36,9 +36,9 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void OnCollision(Collider* bodyA, Collider* bodyB);
+	void OnCollision(Collider* bodyA, Collider* bodyB) override;
 
-	Collider* playerWall[100] = { nullptr };
+	//Collider* playerWall[100] = { nullptr };
 
 private:
 	
