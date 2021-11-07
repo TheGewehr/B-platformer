@@ -5,8 +5,10 @@
 	<textures />
 	<audio />
 	<scene />
-	<map />
+	<map>
+		<camera x="xposition" y="yposition" />
+	</map>
 	<renderer>
-		<camera x="-1214" y="-472" />
+		<camera x="0" y="0" />
 	</renderer>
 </save_state>
