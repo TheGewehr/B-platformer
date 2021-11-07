@@ -356,7 +356,7 @@ bool App::SaveGame() const
 		item = item->next;
 	}
 
-	ret = saveDoc->save_file("save_game.xml");
+	ret = saveDoc->save_file("savegame.xml");
 
 	saveGameRequested = false;
 

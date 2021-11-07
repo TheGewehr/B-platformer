@@ -5,10 +5,8 @@
 	<textures />
 	<audio />
 	<scene />
-	<map>
-		<camera x="xposition" y="yposition" />
-	</map>
-	<renderer>
-		<camera x="0" y="0" />
-	</renderer>
+	<map />
+	<:anonymous />
+	<:anonymous />
+	<renderer />
 </save_state>
