@@ -47,6 +47,18 @@ private:
 	uint bonus_fx;
 	
 	SDL_Rect end_rect;
+	
+
+	List<PhysBody*> static_chains;
+	//p2List<PhysBody*> mapStaticBodies;
+
+	PhysBody* sensor_loss;
+	PhysBody* sensor_win;
+	PhysBody* sensor_out;
+	PhysBody* ricochet01;
+	PhysBody* ricochet02;
+	PhysBody* fliperLeft;
+	PhysBody* fliperRight;
 };
 
 #endif // __SCENE_H__

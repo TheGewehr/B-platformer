@@ -7,6 +7,7 @@
 #include "Window.h"
 #include "Scene.h"
 #include "Player.h"
+#include "Physics.h"
 #include "Map.h"
 
 #include <iostream>
@@ -35,16 +36,92 @@ bool Scene::Awake()
 // Called before the first frame
 bool Scene::Start()
 {
+	// List of points of Box2D
+	int map[78] = {
+	-2, -3,
+	-2, 417,
+	127, 417,
+	127, 444,
+	352, 444,
+	352, 417,
+	383, 417,
+	383, 571,
+	455, 573,
+	448, 480,
+	511, 417,
+	606, 417,
+	606, 587,
+	704, 593,
+	705, 481,
+	705, 353,
+	832, 225,
+	1310, 225,
+	1310, 285,
+	831, 286,
+	831, 417,
+	927, 417,
+	929, 445,
+	1028, 445,
+	1031, 418,
+	1047, 418,
+	1050, 445,
+	1159, 444,
+	1159, 417,
+	1176, 417,
+	1179, 442,
+	1278, 442,
+	1280, 417,
+	1312, 417,
+	1439, 289,
+	1599, 289,
+	1788, 100,
+	1590, -97,
+	245, -128
+	};
+
+	int platform01[8] = {
+	129, 289,
+	351, 289,
+	351, 317,
+	129, 317
+	};
+
+	int platform02[8] = {
+	448, 192,
+	480, 192,
+	480, 224,
+	449, 224
+	};
+
+	int platform03[8] = {
+	544, 256,
+	607, 256,
+	607, 286,
+	545, 286
+	};
+
+	static_chains.add(app->physics->CreateStaticChain(0,0,map,78));
+	static_chains.getLast()->data->id = 0;
+	static_chains.getLast()->data->listener = this;
+
+	static_chains.add(app->physics->CreateStaticChain(0, 0, platform01, 8));
+	static_chains.getLast()->data->id = 0;
+	static_chains.getLast()->data->listener = this;
+
+	static_chains.add(app->physics->CreateStaticChain(0, 0, platform02, 8));
+	static_chains.getLast()->data->id = 0;
+	static_chains.getLast()->data->listener = this;
+
+	static_chains.add(app->physics->CreateStaticChain(0, 0, platform03, 8));
+	static_chains.getLast()->data->id = 0;
+	static_chains.getLast()->data->listener = this;
+
 	// Uploading the assets
 	app->map->Load("hello.tmx");
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	img = app->tex->Load("Assets/background/Background.png");
 
-	// MAP colliders
-	//app->collisions->colliders[0] = new Collider({ 20, 20, 100, 100 }, Collider::Type::WALL, this);
-	// Ground colliders
 	
-
 	if (app->player->IsEnabled() == 0)
 	{
 		app->player->Enable();
