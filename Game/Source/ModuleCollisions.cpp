@@ -102,6 +102,7 @@ bool ModuleCollisions::PreUpdate()
 	}
 
 	return true;
+
 }
 
 bool ModuleCollisions::Update(float dt)
