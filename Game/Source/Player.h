@@ -13,6 +13,9 @@
 
 struct SDL_Texture;
 struct Collider;
+struct Vect2 {
+	int x, y;
+};
 
 class Player : public Module
 {
@@ -126,6 +129,14 @@ public:
 	// The player's collider
 	Collider* hitBox = nullptr;
 	Collider* colBox = nullptr;
+
+	int direction;
+	bool is_moving;
+
+
+	Vect2 momentum;
+
+	bool able_jump;
 
 	//Collider* colBoxUp = nullptr;
 	//Collider* colBoxUpLeft = nullptr;

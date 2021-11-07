@@ -112,11 +112,11 @@ bool ModuleCollisions::Update(float dt)
 	app->player->hitBox->rect.y += GRAVITY;
 
 	// Player movement
-	if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
+	if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_DOWN)
 	{
-		app->player->yposition -= 2;
-		app->player->colBox->rect.y -= 2;
-		app->player->hitBox->rect.y -= 2;
+		app->player->yposition -= 100;
+		app->player->colBox->rect.y -= 100;
+		app->player->hitBox->rect.y -= 100;
 	}
 	
 	
