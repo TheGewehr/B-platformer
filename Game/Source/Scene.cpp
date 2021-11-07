@@ -3,11 +3,12 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Render.h"
+#include "Physics.h"
 #include "Window.h"
 #include "Scene.h"
 #include "Player.h"
+#include "Physics.h"
 #include "Map.h"
-#include "ModuleCollisions.h"
 
 #include <iostream>
 
@@ -35,85 +36,100 @@ bool Scene::Awake()
 // Called before the first frame
 bool Scene::Start()
 {
+	// List of points of Box2D
+	int map[78] = {
+	-2, -3,
+	-2, 417,
+	127, 417,
+	127, 444,
+	352, 444,
+	352, 417,
+	383, 417,
+	383, 571,
+	455, 573,
+	448, 480,
+	511, 417,
+	606, 417,
+	606, 587,
+	704, 593,
+	705, 481,
+	705, 353,
+	832, 225,
+	1310, 225,
+	1310, 285,
+	831, 286,
+	831, 417,
+	927, 417,
+	929, 445,
+	1028, 445,
+	1031, 418,
+	1047, 418,
+	1050, 445,
+	1159, 444,
+	1159, 417,
+	1176, 417,
+	1179, 442,
+	1278, 442,
+	1280, 417,
+	1312, 417,
+	1439, 289,
+	1599, 289,
+	1788, 100,
+	1590, -97,
+	245, -128
+	};
+
+	int platform01[8] = {
+	129, 289,
+	351, 289,
+	351, 317,
+	129, 317
+	};
+
+	int platform02[8] = {
+	448, 192,
+	480, 192,
+	480, 224,
+	449, 224
+	};
+
+	int platform03[8] = {
+	544, 256,
+	607, 256,
+	607, 286,
+	545, 286
+	};
+
+	static_chains.add(app->physics->CreateStaticChain(0,0,map,78));
+	static_chains.getLast()->data->id = 0;
+	static_chains.getLast()->data->listener = this;
+
+	static_chains.add(app->physics->CreateStaticChain(0, 0, platform01, 8));
+	static_chains.getLast()->data->id = 0;
+	static_chains.getLast()->data->listener = this;
+
+	static_chains.add(app->physics->CreateStaticChain(0, 0, platform02, 8));
+	static_chains.getLast()->data->id = 0;
+	static_chains.getLast()->data->listener = this;
+
+	static_chains.add(app->physics->CreateStaticChain(0, 0, platform03, 8));
+	static_chains.getLast()->data->id = 0;
+	static_chains.getLast()->data->listener = this;
+
 	// Uploading the assets
 	app->map->Load("hello.tmx");
 	app->audio->PlayMusic("Assets/audio/music/music_spy.ogg");
 	img = app->tex->Load("Assets/background/Background.png");
 
-	// MAP colliders
-	//app->collisions->colliders[0] = new Collider({ 20, 20, 100, 100 }, Collider::Type::WALL, this);
-	// Ground colliders
-	app->collisions->AddCollider({ 0, 416, 128, 64 }, Collider::Type::WALL,this);
-	app->collisions->AddCollider({ 352, 416, 32, 64 }, Collider::Type::WALL,this);
-	app->collisions->AddCollider({ 511, 416, 97, 64 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 704, 351, 128, 129 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 831, 224, 481, 64 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 832, 416, 96, 64 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1159, 416, 18, 64 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1031, 416, 18, 64 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1280, 416, 32, 64 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1439, 288, 161, 192 }, Collider::Type::WALL, this);
-		// Platform colliders
-	app->collisions->AddCollider({ 128, 288, 224, 32 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 448, 192, 32, 32 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 544, 256, 64, 32 }, Collider::Type::WALL, this);
-
-		// Ramp 1 colliders
-	app->collisions->AddCollider({ 456, 472, 55, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 465, 462, 46, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 474, 453, 37, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 483, 444, 28, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 492, 435, 19, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 501, 426, 10, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 511, 417, 9, 9 }, Collider::Type::WALL, this);
-
-		// Ramp 2 colliders
-	app->collisions->AddCollider({ 830, 225, 9, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 821, 234, 10, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 812, 243, 19, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 803, 252, 28, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 794, 261, 37, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 785, 270, 46, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 776, 279, 55, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 767, 288, 64, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 758, 297, 73, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 749, 306, 82, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 740, 315, 91, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 731, 324, 1100, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 722, 333, 109, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 713, 342, 118, 9 }, Collider::Type::WALL, this);
-
-		// Ramp 3 colliders
-	app->collisions->AddCollider({ 1438, 289, 9, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1429, 298, 10, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1420, 307, 19, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1411, 316, 28, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1402, 325, 37, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1393, 334, 46, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1384, 343, 55, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1375, 352, 64, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1366, 361, 73, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1357, 370, 82, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1348, 379, 91, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1339, 388, 100, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1330, 397, 109, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1321, 406, 118, 9 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1312, 415, 127, 44 }, Collider::Type::WALL, this);
-
-	// Water colliders
-	app->collisions->AddCollider({ 128, 417, 224, 63 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 928, 417, 103, 63 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1049, 417, 110, 63 }, Collider::Type::WALL, this);
-	app->collisions->AddCollider({ 1177, 417, 103, 63 }, Collider::Type::WALL, this);
-
+	
 	if (app->player->IsEnabled() == 0)
 	{
 		app->player->Enable();
 	}
 
-	if (app->collisions->IsEnabled() == 0)
+	if (app->physics->IsEnabled() == 0)
 	{
-		app->collisions->Enable();
+		app->physics->Enable();
 	}
 
 	return true;
@@ -181,20 +197,3 @@ bool Scene::CleanUp()
 
 	return true;
 }
-
-void Scene::OnCollision(Collider* c1, Collider* c2)
-{
-	for (uint i = 0; i < MAX_COLLIDERS; ++i)
-	{
-		if (app->collisions->colliders[i] == nullptr)
-			continue;
-
-		if (c1->type == Collider::PLAYER_COLLBOX && c2->type == Collider::WALL) {
-			app->player->yposition -= GRAVITY;
-		}
-	}
-	
-	
-}
-
-

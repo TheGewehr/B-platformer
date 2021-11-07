@@ -17,9 +17,8 @@ class Textures;
 class Audio;
 class Scene;
 class Map;
-class ModulePhysics;
+class Physics;
 class Player;
-class ModuleCollisions;
 
 class App
 {
@@ -91,9 +90,9 @@ public:
 	Audio* audio;
 	Scene* scene;
 	Map* map;
-	ModulePhysics* physics;
+	Physics* physics;
 	Player* player;
-	ModuleCollisions* collisions;
+	
 	
 private:
 

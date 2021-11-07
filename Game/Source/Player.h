@@ -13,6 +13,9 @@
 
 struct SDL_Texture;
 struct Collider;
+struct Vect2 {
+	int x, y;
+};
 
 class Player : public Module
 {
@@ -123,9 +126,7 @@ public:
 	int backTimerReference;
 	int backTimer;
 
-	// The player's collider
-	Collider* hitBox = nullptr;
-	Collider* colBox = nullptr;
+	
 
 	//Collider* colBoxUp = nullptr;
 	//Collider* colBoxUpLeft = nullptr;

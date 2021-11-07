@@ -23,14 +23,16 @@ enum MainState
 	EXIT
 };
 
-App* app = NULL;
-
 int main(int argc, char* args[])
 {
 	//LOG("Engine starting ...");
 
 	MainState state = CREATE;
 	int result = EXIT_FAILURE;
+	
+	App dummy = App(argc, args);
+	App* app = NULL;
+
 
 	while(state != EXIT)
 	{
@@ -41,7 +43,7 @@ int main(int argc, char* args[])
 			case CREATE:
 			//LOG("CREATION PHASE ===============================");
 
-			app = new App(argc, args);
+				app = new App(argc, args);
 
 			if(app != NULL)
 				state = AWAKE;

@@ -4,7 +4,6 @@
 #include "Module.h"
 #include "List.h"
 #include "Point.h"
-#include "Collider.h"
 #include "Globals.h"
 
 struct SDL_Texture;
@@ -36,8 +35,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void OnCollision(Collider* bodyA, Collider* bodyB) override;
-
+	
 	//Collider* playerWall[100] = { nullptr };
 
 private:
@@ -49,6 +47,18 @@ private:
 	uint bonus_fx;
 	
 	SDL_Rect end_rect;
+	
+
+	List<PhysBody*> static_chains;
+	//p2List<PhysBody*> mapStaticBodies;
+
+	PhysBody* sensor_loss;
+	PhysBody* sensor_win;
+	PhysBody* sensor_out;
+	PhysBody* ricochet01;
+	PhysBody* ricochet02;
+	PhysBody* fliperLeft;
+	PhysBody* fliperRight;
 };
 
 #endif // __SCENE_H__

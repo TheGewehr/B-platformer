@@ -3,7 +3,6 @@
 
 #include "SString.h"
 #include "Globals.h"
-#include "Collider.h"
 
 #include "PugiXml/src/pugixml.hpp"
 
@@ -16,7 +15,7 @@ private:
 	bool enabled;
 
 public:
-	App* Application;
+	App* app;
 
 	Module()
 	{}
@@ -86,7 +85,7 @@ public:
 		return true;
 	}
 
-	virtual void OnCollision(Collider* bodyA, Collider* bodyB)
+	virtual void OnCollision(PhysBody* bodyA, PhysBody* bodyB)
 	{
 	}
 

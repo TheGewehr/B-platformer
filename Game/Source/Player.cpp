@@ -5,7 +5,6 @@
 #include "Render.h"
 #include "Audio.h"
 #include "Scene.h"
-#include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_scancode.h"
 #include <stdio.h>
@@ -108,9 +107,7 @@ bool Player::Start()
 
 	lastDirection = 5;
 
-	colBox= app->collisions->AddCollider({ 20, 323, 16, 10 }, Collider::Type::PLAYER_COLLBOX, this);
-	hitBox = app->collisions->AddCollider({ xposition, yposition, 20, 34 }, Collider::Type::PLAYER_HITBOX, this);
-
+	
 	return ret;
 }
 
@@ -118,14 +115,7 @@ bool Player::Update()
 {
 	bool ret = true;
 	
-		
-
-
-	///std::cout << "    " << xposition << "      " << yposition << std::endl;
-
-	//colBox-xposition;
-
-	///std::cout << "    " << colBox->rect.x << "      " << colBox->rect.y << std::endl;
+	
 
 	
 	
@@ -264,19 +254,7 @@ bool Player::Update()
 		}
 	}
 
-	////////////////////////////////////////////
-	//app->collisions->AddCollider({ xposition, yposition , 20,20}, Collider::Type::PLAYER_COLLBOX,this);
-	//hitBox->SetPos(xposition, yposition + playerHeightOffset);
 	
-	//colBoxUp->SetPos(xposition, yposition - speed + playerHeightOffset);
-	//colBoxUpLeft->SetPos(xposition - diagonalSpeed, yposition - diagonalSpeed + playerHeightOffset);
-	//colBoxLeft->SetPos(xposition - speed, yposition + playerHeightOffset);
-	//colBoxDownLeft->SetPos(xposition - diagonalSpeed, yposition + playerHeight + playerHeightOffset);
-	//colBoxDown->SetPos(xposition, yposition + playerHeight + playerHeightOffset);
-	//colBoxDownRight->SetPos(xposition + playerWidth, yposition + playerHeight + playerHeightOffset);
-	//colBoxRight->SetPos(xposition + playerWidth, yposition + playerHeightOffset);
-	//colBoxUpRight->SetPos(xposition + playerWidth, yposition - diagonalSpeed + playerHeightOffset);
-
 	currentAnimation->Update();
 	return ret;
 }
@@ -309,20 +287,7 @@ bool Player::PostUpdate()
 
 void Player::OnCollision(Collider* c1, Collider* c2)
 {
-	//if (c2->type == Collider::Type::NONE)
-	//{
-	//	app->player->yposition += GRAVITY;
-	//	app->player->colBox->rect.y += GRAVITY;
-	//	app->player->hitBox->rect.y += GRAVITY;
-	//}
 	
-
-	if (c2->type == Collider::Type::WALL)
-	{
-		app->player->yposition -= GRAVITY;
-		app->player->colBox->rect.y -= GRAVITY;
-		app->player->hitBox->rect.y -= GRAVITY;
-	}
 
 }
 
