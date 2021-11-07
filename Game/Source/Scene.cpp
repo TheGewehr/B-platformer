@@ -3,6 +3,7 @@
 #include "Textures.h"
 #include "Audio.h"
 #include "Render.h"
+#include "Physics.h"
 #include "Window.h"
 #include "Scene.h"
 #include "Player.h"
@@ -51,7 +52,7 @@ bool Scene::Start()
 
 	if (app->physics->IsEnabled() == 0)
 	{
-		app->collisions->Enable();
+		app->physics->Enable();
 	}
 
 	return true;
@@ -119,20 +120,3 @@ bool Scene::CleanUp()
 
 	return true;
 }
-
-void Scene::OnCollision(Collider* c1, Collider* c2)
-{
-	for (uint i = 0; i < MAX_COLLIDERS; ++i)
-	{
-		if (app->collisions->colliders[i] == nullptr)
-			continue;
-
-		if (c1->type == Collider::PLAYER_COLLBOX && c2->type == Collider::WALL) {
-			app->player->yposition -= GRAVITY;
-		}
-	}
-	
-	
-}
-
-

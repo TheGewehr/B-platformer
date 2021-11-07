@@ -15,7 +15,7 @@ private:
 	bool enabled;
 
 public:
-	App* Application;
+	App* app;
 
 	Module()
 	{}

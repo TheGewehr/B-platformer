@@ -4,7 +4,6 @@
 #include "Module.h"
 #include "List.h"
 #include "Point.h"
-#include "Collider.h"
 #include "Globals.h"
 
 struct SDL_Texture;
@@ -36,8 +35,7 @@ public:
 	// Called before quitting
 	bool CleanUp();
 
-	void OnCollision(Collider* bodyA, Collider* bodyB) override;
-
+	
 	//Collider* playerWall[100] = { nullptr };
 
 private:
