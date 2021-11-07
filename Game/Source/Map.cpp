@@ -17,6 +17,7 @@ Map::Map() : Module(), mapLoaded(false)
 Map::~Map()
 {}
 
+
 // Called before render is available
 bool Map::Awake(pugi::xml_node& config)
 {
