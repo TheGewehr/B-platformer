@@ -6,7 +6,7 @@
 	<audio />
 	<scene />
 	<map />
-	<:anonymous />
-	<:anonymous />
-	<renderer />
+	<renderer>
+		<camera x="-1214" y="-472" />
+	</renderer>
 </save_state>
