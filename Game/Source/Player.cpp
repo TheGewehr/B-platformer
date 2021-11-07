@@ -109,7 +109,7 @@ bool Player::Start()
 	lastDirection = 5;
 
 	colBox= app->collisions->AddCollider({ 20, 323, 16, 10 }, Collider::Type::PLAYER_COLLBOX, this);
-	hitBox = app->collisions->AddCollider({ xposition, yposition, 20, 30 }, Collider::Type::PLAYER_HITBOX, this);
+	hitBox = app->collisions->AddCollider({ xposition, yposition, 20, 34 }, Collider::Type::PLAYER_HITBOX, this);
 
 	return ret;
 }
@@ -309,15 +309,21 @@ bool Player::PostUpdate()
 
 void Player::OnCollision(Collider* c1, Collider* c2)
 {
-	for (uint i = 0; i < MAX_COLLIDERS; ++i)
-	{
-		if (app->collisions->colliders[i] == nullptr)
-			continue;
+	//if (c2->type == Collider::Type::NONE)
+	//{
+	//	app->player->yposition += GRAVITY;
+	//	app->player->colBox->rect.y += GRAVITY;
+	//	app->player->hitBox->rect.y += GRAVITY;
+	//}
+	
 
-		if (c1->type == Collider::PLAYER_COLLBOX && c2->type == Collider::WALL) {
-			app->player->yposition -= GRAVITY;
-		}
+	if (c2->type == Collider::Type::WALL)
+	{
+		app->player->yposition -= GRAVITY;
+		app->player->colBox->rect.y -= GRAVITY;
+		app->player->hitBox->rect.y -= GRAVITY;
 	}
+
 }
 
 

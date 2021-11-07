@@ -97,11 +97,6 @@ bool ModuleCollisions::PreUpdate()
 					if (c1->listeners[i] != nullptr) c1->listeners[i]->OnCollision(c1, c2);
 				for (uint i = 0; i < MAX_LISTENERS; ++i)
 					if (c2->listeners[i] != nullptr) c2->listeners[i]->OnCollision(c2, c1);
-
-				app->player->yposition -= GRAVITY;
-				app->player->colBox->rect.y -= GRAVITY;
-				app->player->hitBox->rect.y -= GRAVITY;
-				
 			}
 		}
 	}
@@ -112,8 +107,6 @@ bool ModuleCollisions::PreUpdate()
 bool ModuleCollisions::Update(float dt)
 {
 	// Here all movements are applyed
-	// Gravity
-
 	app->player->yposition += GRAVITY;
 	app->player->colBox->rect.y += GRAVITY;
 	app->player->hitBox->rect.y += GRAVITY;
@@ -121,9 +114,9 @@ bool ModuleCollisions::Update(float dt)
 	// Player movement
 	if (app->input->GetKey(SDL_SCANCODE_UP) == KEY_REPEAT)
 	{
-		app->player->yposition -= 1;
-		app->player->colBox->rect.y -= 1;
-		app->player->hitBox->rect.y -= 1;
+		app->player->yposition -= 2;
+		app->player->colBox->rect.y -= 2;
+		app->player->hitBox->rect.y -= 2;
 	}
 	
 	
@@ -260,14 +253,6 @@ int ModuleCollisions::GetMaxColliders() const {
 
 void ModuleCollisions::OnCollision(Collider* c1, Collider* c2)
 {
-	
-		//if ((c1->type == Collider::PLAYER_COLLBOX && c2->type == Collider::WALL)||(c2->type == Collider::PLAYER_COLLBOX && c1->type == Collider::WALL)) 
-		//{
-		//	app->player->yposition -= GRAVITY;
-		//	app->player->colBox->rect.y -= GRAVITY;
-		//	app->player->hitBox->rect.y -= GRAVITY;
-		//}
-	
 }
 
 void ModuleCollisions::RemoveCollider(Collider* collider)

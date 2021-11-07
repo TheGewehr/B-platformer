@@ -21,4 +21,5 @@ enum update_status
 };
 
 #define SCREEN_SIZE 2
+#define FPS 60
 

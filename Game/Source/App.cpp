@@ -128,6 +128,9 @@ bool App::Start()
 bool App::Update()
 {
 	bool ret = true;
+
+	start = SDL_GetTicks();
+
 	PrepareUpdate();
 
 	if(input->GetWindowEvent(WE_QUIT) == true)
@@ -143,6 +146,9 @@ bool App::Update()
 		ret = PostUpdate();
 
 	FinishUpdate();
+
+	if ((1000 / FPS) > SDL_GetTicks() - start) SDL_Delay(1000 / FPS - (SDL_GetTicks() - start));
+
 	return ret;
 }
 
