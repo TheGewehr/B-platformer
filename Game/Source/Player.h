@@ -126,17 +126,7 @@ public:
 	int backTimerReference;
 	int backTimer;
 
-	// The player's collider
-	Collider* hitBox = nullptr;
-	Collider* colBox = nullptr;
-
-	int direction;
-	bool is_moving;
-
-
-	Vect2 momentum;
-
-	bool able_jump;
+	
 
 	//Collider* colBoxUp = nullptr;
 	//Collider* colBoxUpLeft = nullptr;

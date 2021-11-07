@@ -4,10 +4,11 @@
 #include "Render.h"
 #include "Textures.h"
 #include "Audio.h"
-#include "ModuleCollisions.h"
 #include "Scene.h"
+#include "Physics.h"
 #include "Map.h"
 #include "Defs.h"
+#include "Box2D/Box2D/Box2D.h"
 
 #include "Player.h"
 
@@ -29,7 +30,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	scene = new Scene();
 	map = new Map();
 	player = new Player();
-	collisions = new ModuleCollisions();
+	physics = new Physics;
 
 	// Ordered for awake / Start / Update
 	// Reverse order of CleanUp
@@ -40,7 +41,7 @@ App::App(int argc, char* args[]) : argc(argc), args(args)
 	AddModule(scene);
 	AddModule(map);
 	AddModule(player);
-	AddModule(collisions);
+	AddModule(physics);
 
 	// Render last to swap buffer
 	AddModule(render);
